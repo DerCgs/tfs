@@ -23,7 +23,7 @@
 #include "message/server_status_message.h"
 #include "new_client/tfs_client_impl.h"
 #include "new_client/fsname.h"
-#include "dataserver/version.h"
+#include "common/version.h"
 #include "dataserver/blockfile_manager.h"
 #include "tools/util/tool_util.h"
 
@@ -371,8 +371,6 @@ int main(int argc,char* argv[])
         set_log_level = true;
         break;
       case 'v':
-        fprintf(stderr, "recover disk data to cluster tool, version: %s\n", Version::get_build_description());
-        return 0;
       case 'h':
       default:
         help_info = 1;
@@ -382,7 +380,8 @@ int main(int argc,char* argv[])
 
   if (NULL == conf_file || NULL == ns_slave_addr || 0 == server_index.size() || help_info)
   {
-    fprintf(stderr, "\nUsage: %s -f conf_file -i index -h -v\n", argv[0]);
+    fprintf(stderr, "version: %s\n", Version::get_build_description());
+    fprintf(stderr, "Usage: %s -f conf_file -i index -h -v\n", argv[0]);
     fprintf(stderr, "  -f configure file\n");
     fprintf(stderr, "  -s slave cluster addr\n");
     fprintf(stderr, "  -i server_index  dataserver index number\n");
@@ -532,7 +531,7 @@ int main(int argc,char* argv[])
         for (uint32_t i = 0; i < file_info_list.size(); i++)
         {
           // skip deleted file
-          if ((file_info_list.at(i).flag_ & (FI_DELETED | FI_INVALID)) != 0)
+          if ((file_info_list.at(i).flag_ & FILE_STATUS_DELETE) != 0)
             continue;
           uint64_t file_id = file_info_list.at(i).id_;
           ret = copy_file(logic_block, block_id, file_id);
@@ -582,7 +581,7 @@ int main(int argc,char* argv[])
         BLOCK_FILE_INFO_VEC_ITER v_file_iter = v_file_info.begin();
         for (; v_file_iter != v_file_info.end(); v_file_iter++)
         {
-          if ((v_file_iter->file_info_.flag_ & (FI_DELETED | FI_INVALID)) != 0)
+          if ((v_file_iter->file_info_.flag_ & FILE_STATUS_DELETE) != 0)
             continue;
           uint64_t file_id = v_file_iter->file_info_.id_;
           ret = copy_file_from_slave_cluster(ns_slave_addr, ns_addr, block_id, file_id);

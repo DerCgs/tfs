@@ -31,7 +31,7 @@ namespace tfs
   }
   namespace client
   {
-    // class tbutil::Mutex;
+    class tbutil::Mutex;
     class TfsFile;
     class TfsSession;
     class GcWorker;
@@ -58,7 +58,7 @@ namespace tfs
       int64_t pread(const int fd, void* buf, const int64_t count, const int64_t offset);
       int64_t pwrite(const int fd, const void* buf, const int64_t count, const int64_t offset);
       int fstat(const int fd, common::TfsFileStat* buf, const common::TfsStatType mode = common::NORMAL_STAT);
-      int close(const int fd, char* ret_tfs_name = NULL, const int32_t ret_tfs_name_len = 0, const bool simple = false);
+      int close(const int fd, char* ret_tfs_name = NULL, const int32_t ret_tfs_name_len = 0, const bool simple = false, const int32_t force_status = -1);
       int64_t get_file_length(const int fd);
 
       int set_option_flag(const int fd, const common::OptionFlag option_flag);
@@ -87,6 +87,7 @@ namespace tfs
       void set_remote_cache_info(const char* remote_cache_master_addr, const char* remote_cache_slave_addr,
              const char* remote_cache_group_name, const int32_t area);
       void insert_remote_block_cache(const char* ns_addr, const uint32_t block_id, const common::VUINT64& ds_list);
+      int query_remote_block_cache(const char* ns_addr, const uint32_t block_id, common::VUINT64& ds_list);
       void remove_remote_block_cache(const char* ns_addr, const uint32_t block_id);
       bool is_hit_remote_cache(const char* ns_addr, const char* tfs_name) const;
 #endif
@@ -112,8 +113,8 @@ namespace tfs
       void set_wait_timeout(const int64_t time_out_ms);
       int64_t get_wait_timeout() const;
 
-      void set_client_retry_count(const int64_t count);
-      int64_t get_client_retry_count() const;
+      void set_client_retry_count(const int32_t count);
+      int32_t get_client_retry_count() const;
       void set_client_retry_flag(bool retry_flag);
 
       void set_log_level(const char* level);

@@ -214,7 +214,7 @@ int TfsClientImpl::fstat(const int fd, TfsFileStat* buf, const TfsStatType mode)
   return ret;
 }
 
-int TfsClientImpl::close(const int fd, char* ret_tfs_name, const int32_t ret_tfs_name_len, const bool simple)
+int TfsClientImpl::close(const int fd, char* ret_tfs_name, const int32_t ret_tfs_name_len, const bool simple, const int force_status)
 {
   int ret = EXIT_INVALIDFD_ERROR;
   TfsFile* tfs_file = get_file(fd);
@@ -222,7 +222,7 @@ int TfsClientImpl::close(const int fd, char* ret_tfs_name, const int32_t ret_tfs
   {
     {
       ScopedRWLock scoped_lock(tfs_file->rw_lock_, WRITE_LOCKER);
-      ret = tfs_file->close();
+      ret = tfs_file->close(force_status);
       if (TFS_SUCCESS != ret)
       {
         TBSYS_LOG(ERROR, "tfs close failed. fd: %d, ret: %d", fd, ret);
@@ -707,6 +707,29 @@ void TfsClientImpl::insert_remote_block_cache(const char* ns_addr, const uint32_
   }
 }
 
+int TfsClientImpl::query_remote_block_cache(const char* ns_addr, const uint32_t block_id,
+       common::VUINT64& ds_list)
+{
+  int ret = TFS_ERROR;
+  TfsSession *tfs_session = NULL;
+  if (ns_addr != NULL && strlen(ns_addr) > 0)
+  {
+    tfs_session = SESSION_POOL.get(ns_addr);
+  }
+  else
+  {
+    if (NULL != default_tfs_session_)
+    {
+      tfs_session = default_tfs_session_;
+    }
+  }
+  if (NULL != tfs_session)
+  {
+    ret = tfs_session->query_remote_block_cache(block_id, ds_list);
+  }
+  return ret;
+}
+
 void TfsClientImpl::remove_remote_block_cache(const char* ns_addr, const uint32_t block_id)
 {
   TfsSession *tfs_session = NULL;
@@ -726,7 +749,6 @@ void TfsClientImpl::remove_remote_block_cache(const char* ns_addr, const uint32_
     tfs_session->remove_remote_block_cache(block_id);
   }
 }
-
 bool TfsClientImpl::is_hit_remote_cache(const char* ns_addr, const char* tfs_name) const
 {
   bool ret = false;
@@ -742,7 +764,6 @@ bool TfsClientImpl::is_hit_remote_cache(const char* ns_addr, const char* tfs_nam
   }
   return ret;
 }
-
 bool TfsClientImpl::is_hit_remote_cache(const char* ns_addr, const uint32_t block_id) const
 {
   TfsSession *tfs_session = NULL;
@@ -903,20 +924,20 @@ int64_t TfsClientImpl::get_wait_timeout() const
   return ClientConfig::wait_timeout_;
 }
 
-void TfsClientImpl::set_client_retry_count(const int64_t count)
+void TfsClientImpl::set_client_retry_count(const int32_t count)
 {
   if (count > 0)
   {
     ClientConfig::client_retry_count_ = count;
-    TBSYS_LOG(INFO, "set client retry count: %" PRI64_PREFIX "d", ClientConfig::client_retry_count_);
+    TBSYS_LOG(INFO, "set client retry count: %d", ClientConfig::client_retry_count_);
   }
   else
   {
-    TBSYS_LOG(WARN, "set client retry count %"PRI64_PREFIX"d <= 0", count);
+    TBSYS_LOG(WARN, "set client retry count %d <= 0", count);
   }
 }
 
-int64_t TfsClientImpl::get_client_retry_count() const
+int32_t TfsClientImpl::get_client_retry_count() const
 {
   return ClientConfig::client_retry_count_;
 }

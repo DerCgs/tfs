@@ -18,6 +18,7 @@
 
 #include <tbsys.h>
 #include <Memory.hpp>
+#include "common/func.h"
 #include "common/file_op.h"
 #include "common/internal.h"
 #include "segment_container.h"
@@ -52,6 +53,20 @@ namespace tfs
       CACHE_HIT_REMOTE,             // hit tair cache
     };
 
+    struct LocalResource
+    {
+      LocalResource(): local_ip_(0)
+      {
+      }
+      static LocalResource* get_instance()
+      {
+        static LocalResource local_resource;
+        return &local_resource;
+      }
+
+      uint32_t local_ip_;
+    };
+
     struct SegmentData
     {
       int32_t cache_hit_;
@@ -71,7 +86,7 @@ namespace tfs
       int32_t pri_ds_index_;
       int32_t status_;
       TfsFileEofFlag eof_;
-
+      //common::FamilyInfoExt family_info_;
       SegmentData() : cache_hit_(CACHE_HIT_NONE), delete_flag_(true), buf_(NULL),
                       inner_offset_(0), file_info_(NULL), pri_ds_index_(PRI_DS_NOT_INIT),
                       status_(SEG_STATUS_NOT_INIT), eof_(TFS_FILE_EOF_FLAG_NO)
@@ -120,10 +135,9 @@ namespace tfs
         return seg_info_.file_id_ % ds_.size();
       }
 
-      void set_pri_ds_index()
-      {
-        pri_ds_index_ = seg_info_.file_id_ % ds_.size();
-      }
+      int32_t get_nearest_ds(uint32_t ip);
+
+      void set_pri_ds_index();
 
       void set_pri_ds_index(int32_t index)
       {

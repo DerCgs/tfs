@@ -18,73 +18,39 @@
  *
  */
 #include "common/define.h"
+#include "common/atomic.h"
 #include "ns_define.h"
 #include "common/error_msg.h"
 #include "common/parameter.h"
 #include "server_collect.h"
 
+using namespace tfs::common;
+
 namespace tfs
 {
   namespace nameserver
   {
-    NsGlobalStatisticsInfo::NsGlobalStatisticsInfo() :
-      use_capacity_(0),
-      total_capacity_(0),
-      total_block_count_(0),
-      total_load_(0),
-      max_load_(1),
-      max_block_count_(1),
-      alive_server_count_(0)
+    bool in_hour_range(const int64_t now, int32_t& min, int32_t& max)
     {
-
+      struct tm lt;
+      localtime_r(&now, &lt);
+      if (min > max)
+        std::swap(min, max);
+      return (lt.tm_hour >= min && lt.tm_hour < max);
     }
 
-    NsGlobalStatisticsInfo::NsGlobalStatisticsInfo(uint64_t use_capacity, uint64_t totoal_capacity, uint64_t total_block_count, int32_t total_load,
-        int32_t max_load, int32_t max_block_count, int32_t alive_server_count) :
-      use_capacity_(use_capacity), total_capacity_(totoal_capacity), total_block_count_(total_block_count),
-      total_load_(total_load), max_load_(max_load), max_block_count_(max_block_count), alive_server_count_(
-          alive_server_count)
+    bool in_min_range(const int64_t now, const int32_t hour, const int32_t min)
     {
-
+      struct tm lt;
+      localtime_r(&now, &lt);
+      return (lt.tm_hour == hour && lt.tm_min < min);
     }
 
-    void NsGlobalStatisticsInfo::update(const common::DataServerStatInfo& info, const bool is_new)
+    void NsGlobalStatisticsInfo::dump(int32_t level, const char* file , const int32_t line , const char* function , const pthread_t thid) const
     {
-      common::RWLock::Lock lock(*this, common::WRITE_LOCKER);
-      if (is_new)
-      {
-        use_capacity_ += info.use_capacity_;
-        total_capacity_ += info.total_capacity_;
-        total_load_ += info.current_load_;
-        total_block_count_ += info.block_count_;
-        alive_server_count_ += 1;
-      }
-      max_load_ = std::max(info.current_load_, max_load_);
-      max_block_count_ = std::max(info.block_count_, max_block_count_);
-    }
-
-    void NsGlobalStatisticsInfo::update(const NsGlobalStatisticsInfo& info)
-    {
-      common::RWLock::Lock lock(*this, common::WRITE_LOCKER);
-      use_capacity_ = info.use_capacity_;
-      total_capacity_ = info.total_capacity_;
-      total_block_count_ = info.total_block_count_;
-      total_load_ = info.total_load_;
-      max_load_ = info.max_load_;
-      max_block_count_ = info.max_block_count_;
-      alive_server_count_ = info.alive_server_count_;
-    }
-
-    NsGlobalStatisticsInfo& NsGlobalStatisticsInfo::instance()
-    {
-      return instance_;
-    }
-
-    void NsGlobalStatisticsInfo::dump(int32_t level, const char* file , const int32_t line , const char* function ) const
-    {
-      TBSYS_LOGGER.logMessage(level, file, line, function,
-          "use_capacity: %"PRI64_PREFIX"d, total_capacity: %"PRI64_PREFIX"d, total_block_count: %"PRI64_PREFIX"d, total_load: %d, max_load: %d, max_block_count: %d, alive_server_count: %d",
-          use_capacity_, total_capacity_, total_block_count_, total_load_, max_load_, max_block_count_, alive_server_count_);
+      TBSYS_LOGGER.logMessage(level, file, line, function, thid,
+          "use_capacity: %"PRI64_PREFIX"d, total_capacity: %"PRI64_PREFIX"d, total_block_count: %"PRI64_PREFIX"d, total_load: %"PRI64_PREFIX"d",
+          use_capacity_, total_capacity_, total_block_count_, total_load_);
     }
 
     NsRuntimeGlobalInformation::NsRuntimeGlobalInformation()
@@ -112,9 +78,19 @@ namespace tfs
       peer_status_ = NS_STATUS_NONE;
     }
 
+    uint64_t NsRuntimeGlobalInformation::choose_report_block_ipport_addr(const uint64_t server) const
+    {
+      return heart_ip_ports_.empty() ? INVALID_SERVER_ID : heart_ip_ports_[server % heart_ip_ports_.size()];
+    }
+
     bool NsRuntimeGlobalInformation::is_destroyed() const
     {
       return destroy_flag_;
+    }
+
+    int8_t NsRuntimeGlobalInformation::get_role() const
+    {
+      return owner_role_;
     }
 
     bool NsRuntimeGlobalInformation::is_master() const
@@ -141,16 +117,15 @@ namespace tfs
 
     void NsRuntimeGlobalInformation::switch_role(const bool startup, const int64_t now)
     {
-      last_owner_check_time_ = tbutil::Time::now(tbutil::Time::Monotonic).toMicroSeconds() + common::SYSPARAM_NAMESERVER.safe_mode_time_ * 1000000;
-      last_push_owner_check_packet_time_ = last_owner_check_time_;
       lease_id_ = common::INVALID_LEASE_ID;
       lease_expired_time_ = 0;
       if (startup)//startup
       {
         startup_time_ = now;
+        peer_role_ = NS_ROLE_SLAVE;
+        apply_block_safe_mode_time_  = now;
         switch_time_  = now + common::SYSPARAM_NAMESERVER.safe_mode_time_;
         discard_newblk_safe_mode_time_ =  now + common::SYSPARAM_NAMESERVER.discard_newblk_safe_mode_time_;
-        peer_role_ = NS_ROLE_SLAVE;
         owner_role_ = common::Func::is_local_addr(vip_) == true ? NS_ROLE_MASTER : NS_ROLE_SLAVE;
         TBSYS_LOG(INFO, "i %s the master server", owner_role_ == NS_ROLE_MASTER ? "am" : "am not");
       }
@@ -158,16 +133,10 @@ namespace tfs
       {
         owner_role_ = owner_role_ == NS_ROLE_MASTER ? NS_ROLE_SLAVE : NS_ROLE_MASTER;
         peer_role_ = owner_role_ == NS_ROLE_MASTER ? NS_ROLE_SLAVE : NS_ROLE_MASTER;
-        if (now - common::SYSPARAM_NAMESERVER.safe_mode_time_ > startup_time_)
-        {
-          switch_time_  = now + (common::SYSPARAM_NAMESERVER.safe_mode_time_ / 2);
-        }
-        else//这里有可能出现在第一次启动的时候，在safe_mode_time内又发生了切换,这种情况我们按初始状态处理
-        {
-          switch_time_  = now + common::SYSPARAM_NAMESERVER.safe_mode_time_;
+        apply_block_safe_mode_time_ = now + common::SYSPARAM_NAMESERVER.between_ns_and_ds_lease_expire_time_;
+        if (now - common::SYSPARAM_NAMESERVER.safe_mode_time_ < startup_time_)
           discard_newblk_safe_mode_time_ =  now + common::SYSPARAM_NAMESERVER.discard_newblk_safe_mode_time_;
-        }
-        TBSYS_LOG(INFO, "i %s the master server, switch time: %"PRI64_PREFIX"d", owner_role_ == NS_ROLE_MASTER ? "am" : "am not", switch_time_);
+        TBSYS_LOG(INFO, "i %s the master server", owner_role_ == NS_ROLE_MASTER ? "am" : "am not");
       }
     }
 
@@ -179,6 +148,17 @@ namespace tfs
     bool NsRuntimeGlobalInformation::in_discard_newblk_safe_mode_time(const int64_t now) const
     {
       return now < discard_newblk_safe_mode_time_;
+    }
+
+    bool NsRuntimeGlobalInformation::in_apply_block_safe_mode_time(const int64_t now) const
+    {
+      return now < apply_block_safe_mode_time_;
+    }
+
+    bool NsRuntimeGlobalInformation::in_report_block_time(const int64_t now) const
+    {
+      bool report_time = in_min_range(time(NULL), SYSPARAM_NAMESERVER.report_block_time_lower_, SYSPARAM_NAMESERVER.safe_mode_time_);
+      return ((report_time) || ((switch_time_ +  SYSPARAM_NAMESERVER.safe_mode_time_) > now));
     }
 
     int NsRuntimeGlobalInformation::keepalive(int64_t& lease_id, const uint64_t server,
@@ -245,19 +225,17 @@ namespace tfs
       return true;
     }
 
-    void NsRuntimeGlobalInformation::dump(int32_t level, const char* format)
+    void NsRuntimeGlobalInformation::dump(const int32_t level, const char* file, const int32_t line,
+            const char* function, const pthread_t thid, const char* format, ...)
     {
-      TBSYS_LOGGER.logMessage(
-          level,
-          __FILE__,
-          __LINE__,
-          __FUNCTION__,
-          "%s owner ip port: %s, other side ip port: %s, switch time: %s, vip: %s\
-,destroy flag: %s, owner role: %s, other side role: %s, owner status: %s, other side status: %s\
-, last owner check time: %s, last push owner check packet time: %s",
-          NULL == format ? "" : format,
-          tbsys::CNetUtil::addrToString(owner_ip_port_).c_str(),
-          tbsys::CNetUtil::addrToString(peer_ip_port_).c_str(),
+        char msgstr[256] = {'\0'};/** include '\0'*/
+        va_list ap;
+        va_start(ap, format);
+        vsnprintf(msgstr, 256, NULL == format ? "" : format, ap);
+        va_end(ap);
+        TBSYS_LOGGER.logMessage(level, file, line, function, thid, "%s, owner_ip_port: %s, other_side_ip_port: %s,switch_time: %s, vip: %s \
+          destroy: %s, owner_role: %s, other_side_role: %s, owner_status: %s, other_side_status: %s, leaes_id: %"PRI64_PREFIX"d, lease_expired_time: %"PRI64_PREFIX"d",
+          msgstr, tbsys::CNetUtil::addrToString(owner_ip_port_).c_str(), tbsys::CNetUtil::addrToString(peer_ip_port_).c_str(),
           common::Func::time_to_str(switch_time_).c_str(), tbsys::CNetUtil::addrToString(vip_).c_str(),
           destroy_flag_ ? "yes" : "no", owner_role_
           == NS_ROLE_MASTER ? "master" : owner_role_ == NS_ROLE_SLAVE ? "slave" : "unknow", peer_role_
@@ -266,8 +244,7 @@ namespace tfs
           : owner_status_ == NS_STATUS_INITIALIZED ? "initialize" : "unknow",
           peer_status_ == NS_STATUS_UNINITIALIZE ? "uninitialize"
           : peer_status_ == NS_STATUS_INITIALIZED ? "initialize" : "unknow",
-          common::Func::time_to_str(last_owner_check_time_/1000000).c_str(),
-          common::Func::time_to_str(last_push_owner_check_packet_time_/1000000).c_str());
+          lease_id_, lease_expired_time_);
     }
 
     NsRuntimeGlobalInformation& NsRuntimeGlobalInformation::instance()
@@ -275,28 +252,25 @@ namespace tfs
       return instance_;
     }
 
-    std::string& print_servers(const common::ArrayHelper<ServerCollect*>&servers, std::string& result)
+    void print_int64(const common::ArrayHelper<uint64_t>& servers, std::string& result)
     {
-      ServerCollect* server = NULL;
-      for (int32_t i = 0; i < servers.get_array_index(); ++i)
-      {
-        server = *servers.at(i);
-        result += "/";
-        result += tbsys::CNetUtil::addrToString(server->id());
-      }
-      return result;
-    }
-
-    void print_servers(const common::ArrayHelper<uint64_t>& servers, std::string& result)
-    {
-      for (int32_t i = 0; i < servers.get_array_index(); ++i)
+      for (int64_t i = 0; i < servers.get_array_index(); ++i)
       {
         result += "/";
         result += tbsys::CNetUtil::addrToString(*servers.at(i));
       }
     }
 
-    void print_servers(const std::vector<uint64_t>& servers, std::string& result)
+    void print_int64(const common::ArrayHelper<ServerItem> &servers, std::stringstream& result)
+    {
+      for (int64_t i = 0; i < servers.get_array_index(); ++i)
+      {
+        ServerItem* iter = servers.at(i);
+        result << "/" << tbsys::CNetUtil::addrToString(iter->server_) << " : " << iter->family_id_ << " : " << iter->version_;
+      }
+    }
+
+    void print_int64(const std::vector<uint64_t>& servers, std::string& result)
     {
       std::vector<uint64_t>::const_iterator iter = servers.begin();
       for (; iter != servers.end(); ++iter)
@@ -306,15 +280,23 @@ namespace tfs
       }
     }
 
-    void print_blocks(const std::vector<uint32_t>& blocks, std::string& result)
+    void print_int64(const std::vector<ServerItem>& servers, std::stringstream& result)
     {
-      char data[32]={'\0'};
-      std::vector<uint32_t>::const_iterator iter = blocks.begin();
-      for (; iter != blocks.end(); ++iter)
+      std::vector<ServerItem>::const_iterator iter = servers.begin();
+      for (; iter != servers.end(); ++iter)
       {
-        result += "/";
-        snprintf(data, 32, "%d", (*iter));
-        result.append(data);
+        result << "/" << tbsys::CNetUtil::addrToString(iter->server_) << " : " << iter->family_id_ << " : " << iter->version_;
+      }
+    }
+
+    void print_lease(const common::ArrayHelper<common::BlockLease>& helper, std::stringstream& result)
+    {
+      if (helper.get_array_index() > 0)
+        result << " size: " << helper.get_array_index() << " ";
+      for (int64_t index = 0; index < helper.get_array_index(); ++index)
+      {
+        BlockLease* lease = helper.at(index);
+        lease->dump(result);
       }
     }
 
@@ -332,6 +314,12 @@ namespace tfs
         ret = (double)tmp_capacity / (double)tmp_total_capacity;
       }
       return ret;
+    }
+
+    bool is_equal_group(const uint64_t id)
+    {
+      return (static_cast<int64_t>(id % common::SYSPARAM_NAMESERVER.group_count_)
+          == common::SYSPARAM_NAMESERVER.group_seq_);
     }
   }/** nameserver **/
 }/** tfs **/

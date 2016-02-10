@@ -1,3 +1,11 @@
 AUTOMAKE_OPTIONS=foreign
 
-SUBDIRS = common message new_client dataserver nameserver adminserver tools 
+if WITH_LIFECYCLE
+SUBDIRS = common message requester clientv2 dataserver nameserver \
+	rcserver monitor kv_meta_server checkserver syncserver migrateserver kv_meta_server \
+	life_cycle_manager tools
+else
+SUBDIRS = common message requester clientv2 dataserver nameserver \
+	rcserver monitor kv_meta_server checkserver syncserver migrateserver kv_meta_server \
+	tools
+endif

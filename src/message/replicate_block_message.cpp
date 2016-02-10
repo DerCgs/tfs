@@ -20,10 +20,12 @@ namespace tfs
   namespace message
   {
     ReplicateBlockMessage::ReplicateBlockMessage() :
-      command_(0), expire_(0)
+      status_(0)
     {
+      expire_time_ = 0;
       _packetHeader._pcode = common::REPLICATE_BLOCK_MESSAGE;
       memset(&repl_block_, 0, sizeof(common::ReplBlock));
+      memset(&source_block_info_, 0, sizeof(source_block_info_));
     }
 
     ReplicateBlockMessage::~ReplicateBlockMessage()
@@ -32,83 +34,97 @@ namespace tfs
 
     int ReplicateBlockMessage::deserialize(common::Stream& input)
     {
-      int32_t iret = input.get_int32(&command_);
-      if (common::TFS_SUCCESS == iret)
+      int64_t pos = 0;
+      int32_t ret = input.get_int32(&status_);
+      if (common::TFS_SUCCESS == ret)
       {
-        iret =  input.get_int32(&expire_);
+        ret =  input.get_int32(&expire_time_);
       }
-      if (common::TFS_SUCCESS == iret)
+      if (common::TFS_SUCCESS == ret)
       {
-        int64_t pos = 0;
-        iret = repl_block_.deserialize(input.get_data(), input.get_data_length(), pos);
-        if (common::TFS_SUCCESS == iret)
+        ret = repl_block_.deserialize(input.get_data(), input.get_data_length(), pos);
+        if (common::TFS_SUCCESS == ret)
         {
           input.drain(repl_block_.length());
         }
       }
-      if (common::TFS_SUCCESS == iret
-        && input.get_data_length() > 0 )
+      if (common::TFS_SUCCESS == ret)
       {
-        iret = input.get_int64(&seqno_);
+        ret = input.get_int64(&seqno_);
       }
-      return iret;
+      if (common::TFS_SUCCESS == ret)
+      {
+        pos = 0;
+        ret = source_block_info_.deserialize(input.get_data(), input.get_data_length(), pos);
+        if (common::TFS_SUCCESS == ret)
+        {
+          input.drain(source_block_info_.length());
+        }
+      }
+      return ret;
     }
 
     int ReplicateBlockMessage::deserialize(const char* data, const int64_t data_len, int64_t& pos)
     {
-      int32_t iret = common::Serialization::get_int32(data, data_len, pos, &command_);
-      if (common::TFS_SUCCESS == iret)
+      int32_t ret = common::Serialization::get_int32(data, data_len, pos, &status_);
+      if (common::TFS_SUCCESS == ret)
       {
-        iret =  common::Serialization::get_int32(data, data_len, pos, &expire_);
+        ret =  common::Serialization::get_int32(data, data_len, pos, &expire_time_);
       }
-      if (common::TFS_SUCCESS == iret)
+      if (common::TFS_SUCCESS == ret)
       {
-        iret = repl_block_.deserialize(data, data_len, pos);
+        ret = repl_block_.deserialize(data, data_len, pos);
       }
-      if (common::TFS_SUCCESS == iret
-        && pos + common::INT64_SIZE <= data_len)
+      if (common::TFS_SUCCESS == ret)
       {
-        iret = common::Serialization::get_int64(data, data_len, pos, &seqno_);
+        ret = common::Serialization::get_int64(data, data_len, pos, &seqno_);
       }
-      return iret;
+      if (common::TFS_SUCCESS == ret)
+      {
+        ret = source_block_info_.deserialize(data, data_len, pos);
+      }
+      return ret;
     }
 
     int64_t ReplicateBlockMessage::length() const
     {
-      return common::INT_SIZE * 2 + common::INT64_SIZE + repl_block_.length();
+      return common::INT_SIZE * 2 + common::INT64_SIZE + repl_block_.length() + source_block_info_.length();
     }
 
     int ReplicateBlockMessage::serialize(common::Stream& output) const
     {
-      int32_t iret = output.set_int32(command_);
-      if (common::TFS_SUCCESS == iret)
+      int64_t pos = 0;
+      int32_t ret = output.set_int32(status_);
+      if (common::TFS_SUCCESS == ret)
       {
-        iret = output.set_int32(expire_);
+        ret = output.set_int32(expire_time_);
       }
-      if (common::TFS_SUCCESS == iret)
+      if (common::TFS_SUCCESS == ret)
       {
-        int64_t pos = 0;
-        iret = repl_block_.serialize(output.get_free(), output.get_free_length(), pos);
-        if (common::TFS_SUCCESS == iret)
+        ret = repl_block_.serialize(output.get_free(), output.get_free_length(), pos);
+        if (common::TFS_SUCCESS == ret)
         {
           output.pour(repl_block_.length());
         }
       }
-      if (common::TFS_SUCCESS == iret)
+      if (common::TFS_SUCCESS == ret)
       {
-        iret = output.set_int64(seqno_);
+        ret = output.set_int64(seqno_);
       }
-      return iret;
+      if (common::TFS_SUCCESS == ret)
+      {
+        pos = 0;
+        ret = source_block_info_.serialize(output.get_free(), output.get_free_length(), pos);
+        if (common::TFS_SUCCESS == ret)
+        {
+          output.pour(source_block_info_.length());
+        }
+      }
+      return ret;
     }
 
     void ReplicateBlockMessage::dump(void) const
     {
-      TBSYS_LOG(INFO, "seqno: %"PRI64_PREFIX"d, command: %d, expire: %d, block: %u, source: %s, target: %s, start_time: %d, is_move: %s, server_count: %d",
-        seqno_, command_, expire_, repl_block_.block_id_,
-        tbsys::CNetUtil::addrToString(repl_block_.source_id_).c_str(),
-        tbsys::CNetUtil::addrToString(repl_block_.destination_id_).c_str(),
-        repl_block_.start_time_,
-        repl_block_.is_move_ == common::REPLICATE_BLOCK_MOVE_FLAG_NO ? "replicate" : "move", repl_block_.server_count_);
     }
   }
 }
