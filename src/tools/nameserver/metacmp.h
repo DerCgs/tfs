@@ -18,6 +18,7 @@
 
 #include <stdio.h>
 #include <map>
+#include <typeinfo>
 #include "cmp_factory.h"
 
 namespace tfs
