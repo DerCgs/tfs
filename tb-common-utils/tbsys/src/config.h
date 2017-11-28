@@ -51,7 +51,7 @@ namespace tbsys {
     /** 
      * @brief 解析配置文件,并将配置项以key-value的形式存储到内存中
      */
-    class           CConfig {
+    class  CConfig {
         public:
             CConfig();
             ~CConfig();
