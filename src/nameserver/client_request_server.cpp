@@ -145,26 +145,30 @@ namespace tfs
     int ClientRequestServer::open_read_mode_(common::VUINT64& servers, const uint32_t block) const
     {
       servers.clear();
-      return 0 == block ? EXIT_BLOCK_NOT_FOUND :  manager_.get_block_manager().get_servers(servers, block);
+      return 0 == block ? EXIT_BLOCK_NOT_FOUND :
+	manager_.get_block_manager().get_servers(servers, block);
     }
 
-    int ClientRequestServer::batch_open(const common::VUINT32& blocks, const int32_t mode, const int32_t block_count, std::map<uint32_t, common::BlockInfoSeg>& out)
+    int ClientRequestServer::batch_open(const common::VUINT32& blocks, const int32_t mode,
+					const int32_t block_count,
+					std::map<uint32_t, common::BlockInfoSeg>& out)
     {
-      int32_t ret =  mode & T_READ ? batch_open_read_mode_(out, blocks) : batch_open_write_mode_(out,mode, block_count);
+      int32_t ret =  mode & T_READ ? batch_open_read_mode_(out, blocks) :
+	batch_open_write_mode_(out,mode, block_count);
       std::vector<stat_int_t> stat(4, 0);
       if (mode & T_READ)
       {
         if (TFS_SUCCESS == ret)
           stat[0] = out.size();
         else
-          stat[1] = __gnu_cxx::abs(out.size() - blocks.size());
+          stat[1] = std::abs((long)(out.size() - blocks.size()));
       }
       else
       {
         if (TFS_SUCCESS == ret)
           stat[2] = out.size();
         else
-          stat[3] = __gnu_cxx::abs(out.size() - block_count);
+          stat[3] = std::abs((long)(out.size() - block_count));
       }
       GFactory::get_stat_mgr().update_entry(GFactory::tfs_ns_stat_, stat);
       return ret;
