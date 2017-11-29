@@ -16,8 +16,8 @@
 #ifndef TFS_COMMON_BASE_MAIN_H
 #define TFS_COMMON_BASE_MAIN_H
 #include <string>
-#include <Mutex.h>
-#include <Monitor.h>
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
 
 namespace tfs
 {

@@ -16,9 +16,9 @@
 #ifndef TFS_COMMON_BASE_PACKET_H_
 #define TFS_COMMON_BASE_PACKET_H_
 
-#include <tbsys.h>
-#include <tbnet.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbnet/tbnet.h"
+#include "tbsys/Memory.hpp"
 #include "internal.h"
 #include "func.h"
 #include "stream.h"

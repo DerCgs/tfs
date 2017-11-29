@@ -17,7 +17,7 @@
 
 #include "func.h"
 #include "error_msg.h"
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 using namespace std;
 
 namespace tfs

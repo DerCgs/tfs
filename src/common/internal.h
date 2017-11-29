@@ -31,7 +31,7 @@
 #include <assert.h>
 #include <limits.h>
 
-#include "tbnet.h"
+#include "tbnet/tbnet.h"
 
 #include "define.h"
 
