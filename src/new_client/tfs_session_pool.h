@@ -17,8 +17,8 @@
 #define TFS_CLIENT_TFSSESSION_POOL_H_
 
 #include <map>
-#include <tbsys.h>
-#include <Mutex.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
 #include "tfs_session.h"
 
 namespace tfs

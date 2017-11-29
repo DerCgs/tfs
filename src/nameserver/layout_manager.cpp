@@ -19,8 +19,8 @@
 #include <functional>
 #include <numeric>
 #include <math.h>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include "ns_define.h"
 #include "nameserver.h"
 #include "layout_manager.h"

@@ -23,8 +23,8 @@
 #include <fcntl.h>
 #include <queue>
 #include <errno.h>
-#include <Monitor.h>
-#include <Mutex.h>
+#include "tbsys/Monitor.h"
+#include "tbsys/Mutex.h"
 
 #include "sync_backup.h"
 #include "common/file_queue.h"

@@ -16,8 +16,8 @@
 #define TFS_CLIENT_RC_CLIENTAPI_IMPL_H_
 
 #include <stdio.h>
-#include <tbsys.h>
-#include <Timer.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Timer.h"
 #include "common/rc_define.h"
 #include "tfs_rc_client_api.h"
 

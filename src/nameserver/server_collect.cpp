@@ -15,7 +15,7 @@
 #include "server_collect.h"
 #include "block_collect.h"
 #include "global_factory.h"
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "layout_manager.h"
 
 using namespace tfs::common;

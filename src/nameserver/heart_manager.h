@@ -20,7 +20,7 @@
 #ifndef TFS_NAMESERVER_HEART_MANAGEMENT_
 #define TFS_NAMESERVER_HEART_MANAGEMENT_
 
-#include <Timer.h>
+#include "tbsys/Timer.h"
 #include "message/message_factory.h"
 
 namespace tfs

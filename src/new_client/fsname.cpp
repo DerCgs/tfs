@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <string.h>
 #include "fsname.h"
 

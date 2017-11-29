@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/parameter.h"
 #include "block_collect.h"
 #include "server_collect.h"

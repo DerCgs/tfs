@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 //#include "common/config.h"
 #include "common/func.h"
 #include "common/parameter.h"

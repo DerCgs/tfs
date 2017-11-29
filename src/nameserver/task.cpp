@@ -17,7 +17,7 @@
  *      - modify 2010-04-23
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <bitset>
 #include "common/client_manager.h"
 #include "message/compact_block_message.h"

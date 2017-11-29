@@ -16,7 +16,7 @@
 #ifndef TFS_NAMESERVER_FSIMAGE_H
 #define TFS_NAMESERVER_FSIMAGE_H
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 #include "ns_define.h"
 
 namespace tfs

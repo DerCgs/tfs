@@ -21,7 +21,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <ext/hash_map>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/config_item.h"
 //#include "common/config.h"
 #include "dataserver_define.h"
