@@ -26,38 +26,16 @@
     *   apt-get install libgoogle-perftools-dev
     *   yum install google-perftools.x86_64
 
-安装tb-common-utils
--------------------
-
-TFS使用tb-common-utils软件包，tb-common-utils包含淘宝使用的基础系统库tbsys和网络库tbnet两个组件；安装tb-common-utils前需要设置环境变量**TBLIB_ROOT**，tbsys和tbnet将会被安装TBLIB_ROOT对应的路径（必须是绝对路径）下，TFS会在这个路径下查找tbsys、tbnet头文件和库。
-
-设置TBLIB_ROOT环境变量
-
-    在~/.bash_profile文件中加入，export TBLIB_ROOT=path_to_tbutil , 然后执行source ~/.bash_profile
-    
-
-下载源码
-
-    # svn co -r 18 http://code.taobao.org/svn/tb-common-utils/trunk tb-common-utils
-    注意： 这里不要checkout最新版本，version18以后的修改导致部分接口不能前向兼容。
-    
-
-编译安装
-
-    # cd tb-common-utils
-    # sh build.sh
-    
-
-如果一切顺利，tb-common-utils已经安装成功到$TBLIB_ROOT路径下；如遇到问题请先阅读后面的**编译FAQ**。
-
 安装TFS
 -------
+
+tb-common-utils has been integrated.
 
 TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默认只编译TFS的nameserver，dataserver，client和tool，以去除对mysql的依赖，需要使用到rcserver（全局资源管理服务），metaserver(TFS自定义文件名服务）的用户请自行编译安装这两个服务。
 
 下载源码
 
-    # svn co http://code.taobao.org/svn/tfs/branches/dev_for_outer_users tfs
+    # git clone https://github.com/yage99/tfs.git
     
 
 编译安装
@@ -114,4 +92,4 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
  [4]: http://zlib.net/
  [5]: http://sourceforge.net/projects/e2fsprogs/
  [6]: http://code.google.com/p/gperftools/downloads/list
- [7]: https://github.com/alibaba/tfs/blob/master/DEPLOY.md
+ [7]: https://github.com/yage99/tfs/blob/master/DEPLOY.md
