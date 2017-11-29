@@ -48,7 +48,7 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
     
 
 *   --prefix 指定tfs安装路径，默认会被安装到~/tfs_bin目录
-*   --with-release 指定按release版本的参数进行编译，如果不指定这个参数，则会按开发版本比较严格的参数编译，包含-Werror参数，所有的警告都会被当错误，在高版本gcc下会导致项目编译不过，很多开源用户反馈的编译问题都跟这个有关，因为gcc高版本对代码的检查越来越严格，淘宝内部使用的gcc版本是gcc-4.1.2。
+*   --with-release 指定按release版本的参数进行编译，如果不指定这个参数，则会按开发版本比较严格的参数编译，包含-Werror参数，所有的警告都会被当错误，在高版本gcc下会导致项目编译不过，很多开源用户反馈的编译问题都跟这个有关，因为gcc高版本对代码的检查越来越严格，~~淘宝内部使用的gcc版本是gcc-4.1.2~~ My version has been tested in gcc-4.9.x。
 
 至此，TFS已经安装成功了，你可以开始[部署TFS服务][7]。
 
@@ -57,12 +57,6 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
 
     Q: 使用TFS一定需要64bit Liunx？
     A: 是的，否则整个项目不能正常编译通过。
-    
-    Q: 编译TFS过程中出现出现类似tbnet.h:39: fatal error: tbsys.h: No such file or directory的错误提示？
-    A: 需要先安装tb-common-utils软件包。
-    
-    Q: 在安装tb-common-utils过程中，提示设置please set TBLIB_ROOT varialbe first!!？
-    A: 需要先设置TBLIB_ROOT环境变量，再编译安装tb-common-utils。
     
     Q: 编译过程中出现类似警告：格式 ‘%lu’ 需要类型 ‘long unsigned int’，但实参 3 的类型为 ‘size_t’ ？
     A: 你的机器使用的应该是32bit OS，如果你坚持要编译，可以自行修改代码或者直接忽略这些警告。
