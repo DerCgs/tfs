@@ -23,7 +23,7 @@
 #include <string>
 #include <ext/hash_map>
 #include <signal.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "show.h"
 #include "metacmp.h"
 #include "message/message_factory.h"

@@ -17,18 +17,18 @@ bin_PROGRAMS = clear_file_system\
                modify_super_block\
                tfsping\
                view_local_key\
-							 gen_block_prefix\
-							 verify_block_to_dataserver
+		gen_block_prefix\
+		verify_block_to_dataserver
 
 LDADD =	$(top_builddir)/src/tools/util/libtfstoolsutil.a\
 	$(top_builddir)/src/dataserver/libdataserver.a\
 	$(top_builddir)/src/new_client/.libs/libtfsclient.a\
-	$(top_builddir)/src/tbsys/libtbsys.a\
-	$(top_builddir)/src/tbnet/libtbnet.a\
 	$(UNIQUE_STORE_LDFLAGS)\
         $(TAIR_CACHE_LDFLAGS) \
 	$(top_builddir)/src/message/libtfsmessage.a\
-        $(top_builddir)/src/common/libtfscommon.a
+        $(top_builddir)/src/common/libtfscommon.a\
+	$(top_builddir)/src/tbsys/libtbsys.a\
+	$(top_builddir)/src/tbnet/libtbnet.a
 
 clear_file_system_SOURCES = clear_file_system.cpp
 

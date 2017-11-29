@@ -15,7 +15,7 @@
 *      - modify-2012/02/21
 *
 */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <unistd.h>
 #include <string.h>
 #include <set>
