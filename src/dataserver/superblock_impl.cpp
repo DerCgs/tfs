@@ -15,8 +15,8 @@
  */
 #include "superblock_impl.h"
 #include "dataserver_define.h"
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 
 namespace tfs
 {

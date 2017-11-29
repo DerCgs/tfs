@@ -16,8 +16,8 @@
 #ifndef TFS_NAMESERVER_GC_H_
 #define TFS_NAMESERVER_GC_H_
 
-#include <Timer.h>
-#include <Mutex.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Mutex.h"
 #include "ns_define.h"
 
 #ifdef TFS_GTEST

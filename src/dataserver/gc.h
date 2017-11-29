@@ -16,8 +16,8 @@
 #ifndef TFS_DATASERVER_GC_H
 #define TFS_DATASERVER_GC_H
 
-#include <Timer.h>
-#include <Mutex.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Mutex.h"
 #include "dataserver_define.h"
 
 namespace tfs

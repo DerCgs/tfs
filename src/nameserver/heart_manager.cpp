@@ -17,9 +17,9 @@
  *      - modify 2010-04-23
  *
  */
-#include <tbsys.h>
-#include <Memory.hpp>
-#include <Mutex.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
+#include "tbsys/Mutex.h"
 #include "ns_define.h"
 #include "nameserver.h"
 #include "common/error_msg.h"

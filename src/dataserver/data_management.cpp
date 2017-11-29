@@ -21,7 +21,7 @@
 #include "blockfile_manager.h"
 #include "dataserver_define.h"
 #include "visit_stat.h"
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 
 namespace tfs
 {

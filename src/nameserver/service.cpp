@@ -18,8 +18,8 @@
  *
  */
 #include <exception>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include "nameserver.h"
 #include "block_collect.h"
 

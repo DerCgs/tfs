@@ -20,7 +20,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 
 #include "common/func.h"
 #include "common/directory_op.h"

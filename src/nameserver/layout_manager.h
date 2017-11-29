@@ -18,7 +18,7 @@
 #define TFS_NAMESERVER_LAYOUT_MANAGER_H_
 
 #include <pthread.h>
-#include <Timer.h>
+#include "tbsys/Timer.h"
 #include "gc.h"
 #include "common/lock.h"
 #include "block_collect.h"

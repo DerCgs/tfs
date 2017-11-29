@@ -17,7 +17,7 @@
  *      - modify 2010-04-23
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "block_checker.h"
 #include "blockfile_manager.h"
 #include "common/func.h"

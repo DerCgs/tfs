@@ -3,8 +3,8 @@ AM_CPPFLAGS=-fpic\
 
 AM_LDFLAGS=-lrt -lpthread -ldl
 
-LDADD=$(top_builddir)/src/tbsys/libtbsys.la\
-      $(top_builddir)/src/tbnet/libtbnet.la
+LDADD=$(top_builddir)/src/tbsys/libtbsys.a\
+      $(top_builddir)/src/tbnet/libtbnet.a
 
 noinst_LIBRARIES = libtfscommon.a
 

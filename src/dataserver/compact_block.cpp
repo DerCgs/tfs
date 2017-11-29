@@ -15,7 +15,7 @@
  *      - modify 2010-04-23
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "compact_block.h"
 #include "message/compact_block_message.h"
 #include "common/new_client.h"

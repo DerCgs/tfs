@@ -20,8 +20,8 @@
 
 #include "common/internal.h"
 #include "new_client/tfs_client_impl.h"
-#include <Memory.hpp>
-#include <TbThread.h>
+#include "tbsys/Memory.hpp"
+#include "tbsys/TbThread.h"
 
 namespace tfs
 {

@@ -20,7 +20,7 @@
 #include "gc.h"
 #include "common/directory_op.h"
 #include <string.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include <strings.h>
 
 namespace tfs

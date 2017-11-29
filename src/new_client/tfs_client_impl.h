@@ -16,7 +16,7 @@
 #ifndef TFS_CLIENT_TFSCLIENTIMPL_H_
 #define TFS_CLIENT_TFSCLIENTIMPL_H_
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 #include <stdio.h>
 #include <pthread.h>
 #include "common/internal.h"

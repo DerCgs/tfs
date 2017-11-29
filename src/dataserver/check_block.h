@@ -22,7 +22,7 @@
 #include "blockfile_manager.h"
 #include "logic_block.h"
 #include "visit_stat.h"
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 
 namespace tfs
 {

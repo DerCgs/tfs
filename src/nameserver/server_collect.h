@@ -18,7 +18,7 @@
 #define TFS_NAMESERVER_SERVER_COLLECT_H_
 
 #include <stdint.h>
-#include <tbnet.h>
+#include "tbnet/tbnet.h"
 #include "ns_define.h"
 #include "common/lock.h"
 #include "common/parameter.h"

@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "requester.h"
 #include "message/block_info_message.h"
 #include "common/new_client.h"

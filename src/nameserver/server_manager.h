@@ -19,8 +19,8 @@
 
 #include <map>
 #include <stdint.h>
-#include <Shared.h>
-#include <Handle.h>
+#include "tbsys/Shared.h"
+#include "tbsys/Handle.h"
 #include "gc.h"
 #include "ns_define.h"
 #include "common/lock.h"

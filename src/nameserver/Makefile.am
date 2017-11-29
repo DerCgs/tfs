@@ -5,7 +5,9 @@ AM_CPPFLAGS=-I$(top_srcdir)/src
 AM_LDFLAGS=-lz -lrt -lpthread -ldl -rdynamic ${TCMALLOC_LDFLAGS}
 
 LDADD=$(top_builddir)/src/message/libtfsmessage.a \
-      $(top_builddir)/src/common/libtfscommon.a
+      $(top_builddir)/src/common/libtfscommon.a\
+      $(top_builddir)/src/tbsys/libtbsys.a\
+      $(top_builddir)/src/tbnet/libtbnet.a
 
 noinst_LIBRARIES=libnameserver.a
 
