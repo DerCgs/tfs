@@ -15,7 +15,7 @@
  */
 #ifndef TFS_COMMON_BASE_PACKET_FACTORY_H_
 #define TFS_COMMON_BASE_PACKET_FACTORY_H_
-#include <tbnet.h>
+#include "tbnet/tbnet.h"
 #include "base_packet.h"
 namespace tfs
 {

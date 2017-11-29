@@ -17,8 +17,8 @@
 #define TFS_COMMON_LOCK_H_
 
 #include <pthread.h>
-#include <tbsys.h>
-#include <tblog.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/tblog.h"
 
 
 namespace tfs

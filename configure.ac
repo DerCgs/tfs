@@ -31,19 +31,19 @@ AC_CHECK_LIB([rt], [main])
 
 # AC_CHECK_LIB([mysqlclient], [main])
 
-AC_ARG_WITH([tblib-root],
-           AS_HELP_STRING([--with-tblib-root],
-           [tblib installation path]),
-           TBLIB_ROOT=${withval})
-if  test -z "${TBLIB_ROOT}"; then
-   dnl tbnet include path supplied
-   TBLIB_ROOT="/usr/local"
-fi
-if ! test -d "${TBLIB_ROOT}/include" -a -d "${TBLIB_ROOT}/lib"; then
-        AC_MSG_ERROR([tblib_root is not work! expect tblib_root/include and tblib_root/lib directory])
-        exit 1;
-fi
-AC_SUBST([TBLIB_ROOT])
+#AC_ARG_WITH([tblib-root],
+#           AS_HELP_STRING([--with-tblib-root],
+#           [tblib installation path]),
+#           TBLIB_ROOT=${withval})
+#if  test -z "${TBLIB_ROOT}"; then
+#   dnl tbnet include path supplied
+#   TBLIB_ROOT="/usr/local"
+#fi
+#if ! test -d "${TBLIB_ROOT}/include" -a -d "${TBLIB_ROOT}/lib"; then
+#        AC_MSG_ERROR([tblib_root is not work! expect tblib_root/include and tblib_root/lib directory])
+#        exit 1;
+#fi
+#AC_SUBST([TBLIB_ROOT])
 
 AC_ARG_ENABLE([readline],
            AS_HELP_STRING([--disable-readline],
@@ -201,6 +201,8 @@ AC_CONFIG_FILES([Makefile
                  scripts/Makefile
                  scripts/ha/Makefile
                  src/Makefile
+		 src/tbsys/Makefile
+		 src/tbnet/Makefile
                  src/adminserver/Makefile
                  src/new_client/Makefile
                  src/common/Makefile

@@ -18,7 +18,7 @@
  *
  */
 
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "mmap_file.h"
 
 namespace tfs

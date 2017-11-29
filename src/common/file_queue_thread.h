@@ -21,9 +21,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <vector>
-#include <tbsys.h>
-#include <Mutex.h>
-#include <Monitor.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
 
 #include "func.h"
 #include "file_queue.h"

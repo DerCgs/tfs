@@ -14,7 +14,7 @@
  */
 
 
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 #include "func.h"
 #include "define.h"

@@ -16,10 +16,10 @@
 #ifndef TFS_COMMON_BASE_SERVICE_H_
 #define TFS_COMMON_BASE_SERVICE_H_
 
-#include <tbnet.h>
-#include <tbsys.h>
-#include <Timer.h>
-#include <Service.h>
+#include "tbnet/tbnet.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/Timer.h"
+#include "tbsys/Service.h"
 #include "base_main.h"
 #include "base_packet.h"
 #include "base_packet_factory.h"

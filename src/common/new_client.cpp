@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "new_client.h"
 #include "error_msg.h"
 #include "internal.h"

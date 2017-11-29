@@ -15,7 +15,7 @@
  */
 #include "file_queue_thread.h"
 #include "error_msg.h"
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 using namespace tfs;
 using namespace common;

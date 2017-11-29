@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tblog.h>
+#include "tbsys/tblog.h"
 #include <libgen.h>
 #include "error_msg.h"
 #include "config_item.h"
