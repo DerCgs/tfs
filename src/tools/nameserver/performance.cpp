@@ -16,12 +16,12 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include <Mutex.h>
-#include <Timer.h>
-#include <Handle.h>
+#include "tbsys/Mutex.h"
+#include "tbsys/Timer.h"
+#include "tbsys/Handle.h"
 #include <sys/types.h>
 #include <pthread.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include <curses.h>
 #include "common/func.h"
 #include "common/internal.h"

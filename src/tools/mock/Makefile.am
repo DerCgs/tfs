@@ -7,8 +7,8 @@ AM_LDFLAGS=-lz -lrt -lpthread -ldl
 
 LDADD=$(top_builddir)/src/message/libtfsmessage.a \
       $(top_builddir)/src/common/libtfscommon.a\
-      $(TBLIB_ROOT)/lib/libtbnet.a \
-      $(TBLIB_ROOT)/lib/libtbsys.a
+      $(top_builddir)/src/tbnet/libtbnet.a \
+      $(top_builddir)/src/tbsys/libtbsys.a
 
 
 MOCKDATASERVER_SOURCE_LIST= mock_data_server_instance.cpp mock_data_server_instance.h

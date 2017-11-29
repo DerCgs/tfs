@@ -23,8 +23,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <tbsys.h>
-#include <Service.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Service.h"
 
 #include "mock_data_server_instance.h"
 

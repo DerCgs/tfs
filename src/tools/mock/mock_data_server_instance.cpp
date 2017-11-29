@@ -16,7 +16,7 @@
 
 #include "mock_data_server_instance.h"
 
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 #include "common/status_message.h"
 #include "common/config_item.h"

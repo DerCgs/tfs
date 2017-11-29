@@ -15,8 +15,8 @@
  */
 #include <stdio.h>
 #include <signal.h>
-#include <Monitor.h>
-#include <Mutex.h>
+#include "tbsys/Monitor.h"
+#include "tbsys/Mutex.h"
 #include "common/internal.h"
 #include "common/parameter.h"
 #include "common/client_manager.h"
