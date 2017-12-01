@@ -1,13 +1,12 @@
 AM_CPPFLAGS=-I$(top_srcdir)/src\
-      $(TAIR_CACHE_CPPFLAGS)\
-	    -I$(TBLIB_ROOT)/include/tbsys\
-            -I$(TBLIB_ROOT)/include/tbnet\
+            $(TAIR_CACHE_CPPFLAGS)\
 	    $(READLINE_INCLUDE)
 
-AM_LDFLAGS=-lz -lrt -lpthread -ldl $(READLINE_LIB) -luuid
+LDFLAGS=$(READLINE_LIB)
 
-bin_PROGRAMS = admintool showsyncoplog rmsyncoplog ssm tfstool performance syncbyfile\
-               read_syncoplog_header repair_block_info
+bin_PROGRAMS = admintool showsyncoplog rmsyncoplog ssm\
+               performance syncbyfile\
+               read_syncoplog_header repair_block_info tfstool
 if WITH_TAIR_CACHE
 bin_PROGRAMS += clear_remote_block_cache
 endif
@@ -20,14 +19,15 @@ LDADD = $(top_builddir)/src/tools/util/libtfstoolsutil.a\
 	$(UNIQUE_STORE_LDFLAGS)\
 	$(TAIR_CACHE_LDFLAGS) \
 	$(top_builddir)/src/tbnet/libtbnet.a\
-	$(top_builddir)/src/tbsys/libtbsys.a
+	$(top_builddir)/src/tbsys/libtbsys.a\
+        $(LDFLAGS)
 
 showsyncoplog_SOURCES = showsyncoplog.cpp
 
-tfstool_SOURCES =  tfstool.cpp
+tfstool_SOURCES = tfstool.cpp
 
 ssm_SOURCES = main.cpp show.cpp show_factory.cpp metacmp.cpp cmp_factory.cpp common.cpp\
-							show.h  show_factory.h metacmp.h cmp_factory.h common.h
+              show.h  show_factory.h metacmp.h cmp_factory.h common.h
 
 rmsyncoplog_SOURCES=rmsyncoplog.cpp
 read_syncoplog_header_SOURCES=read_syncoplog_header.cpp
