@@ -15,8 +15,8 @@
  *      -modify interface-2012.03.15
  *
  */
-#include <tbsys.h>
-#include <tbnetutil.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/tbnetutil.h"
 #include "common/status_message.h"
 #include "common/base_service.h"
 #include "message/client_cmd_message.h"
@@ -37,7 +37,8 @@ namespace tfs
 
     }
 
-    int ClientRequestServer::keepalive(const common::DataServerStatInfo& ds_info, const time_t now)
+    int ClientRequestServer::keepalive(const common::DataServerStatInfo& ds_info,
+				       const time_t now)
     {
       int32_t ret = TFS_ERROR;
       DataServerLiveStatus status = ds_info.status_;
@@ -58,7 +59,8 @@ namespace tfs
           {
             if (isnew) //new dataserver
             {
-              TBSYS_LOG(INFO, "dataserver: %s join: use capacity: %" PRI64_PREFIX "u, total capacity: %" PRI64_PREFIX "u",
+              TBSYS_LOG(INFO, "dataserver: %s join: use capacity: %" PRI64_PREFIX "u, \
+total capacity: %" PRI64_PREFIX "u",
                   CNetUtil::addrToString(ds_info.id_).c_str(), ds_info.use_capacity_,
                   ds_info.total_capacity_);
             }
@@ -113,7 +115,8 @@ namespace tfs
       }
       else//write mode
       {
-        ret = GFactory::get_runtime_info().is_master() ? TFS_SUCCESS : EXIT_ACCESS_PERMISSION_ERROR;
+        ret = GFactory::get_runtime_info().is_master() ? TFS_SUCCESS :
+	  EXIT_ACCESS_PERMISSION_ERROR;
         if (TFS_SUCCESS == ret)//master
         {
           //check this block if doing any operations like replicating, moving, compacting...
@@ -122,7 +125,8 @@ namespace tfs
           {
             if (manager_.get_task_manager().exist(block_id))
             {
-              TBSYS_LOG(INFO, "it's error when we'll get block information in open this block: %u with write mode because block: %u is busy.",
+              TBSYS_LOG(INFO, "it's error when we'll get block information in open \
+this block: %u with write mode because block: %u is busy.",
                   block_id,  mode);
               ret = EXIT_BLOCK_BUSY;
             }
@@ -142,29 +146,34 @@ namespace tfs
       return ret;
     }
 
-    int ClientRequestServer::open_read_mode_(common::VUINT64& servers, const uint32_t block) const
+    int ClientRequestServer::open_read_mode_(common::VUINT64& servers,
+					     const uint32_t block) const
     {
       servers.clear();
-      return 0 == block ? EXIT_BLOCK_NOT_FOUND :  manager_.get_block_manager().get_servers(servers, block);
+      return 0 == block ? EXIT_BLOCK_NOT_FOUND :
+	manager_.get_block_manager().get_servers(servers, block);
     }
 
-    int ClientRequestServer::batch_open(const common::VUINT32& blocks, const int32_t mode, const int32_t block_count, std::map<uint32_t, common::BlockInfoSeg>& out)
+    int ClientRequestServer::batch_open(const common::VUINT32& blocks, const int32_t mode,
+					const int32_t block_count,
+					std::map<uint32_t, common::BlockInfoSeg>& out)
     {
-      int32_t ret =  mode & T_READ ? batch_open_read_mode_(out, blocks) : batch_open_write_mode_(out,mode, block_count);
+      int32_t ret =  mode & T_READ ? batch_open_read_mode_(out, blocks) :
+	batch_open_write_mode_(out,mode, block_count);
       std::vector<stat_int_t> stat(4, 0);
       if (mode & T_READ)
       {
         if (TFS_SUCCESS == ret)
           stat[0] = out.size();
         else
-          stat[1] = __gnu_cxx::abs(out.size() - blocks.size());
+          stat[1] = std::abs((long)(out.size() - blocks.size()));
       }
       else
       {
         if (TFS_SUCCESS == ret)
           stat[2] = out.size();
         else
-          stat[3] = __gnu_cxx::abs(out.size() - block_count);
+          stat[3] = std::abs((long)(out.size() - block_count));
       }
       GFactory::get_stat_mgr().update_entry(GFactory::tfs_ns_stat_, stat);
       return ret;
@@ -197,7 +206,8 @@ namespace tfs
       {
         if (WRITE_COMPLETE_STATUS_YES !=  parameter.status_)
         {
-          TBSYS_LOG(INFO, "close block: %u successful, but cleint write operation error,lease: %u",
+          TBSYS_LOG(INFO, "close block: %u successful, \
+but cleint write operation error,lease: %u",
               block_id, parameter.lease_id_);
         }
         else
@@ -206,25 +216,31 @@ namespace tfs
           ret = (NULL == block) ? EXIT_BLOCK_NOT_FOUND : TFS_SUCCESS;
           if (TFS_SUCCESS == ret)//check version
           {
-            ret = block->version() >= parameter.block_info_.version_ ? EXIT_COMMIT_ERROR : TFS_SUCCESS;
+            ret = block->version() >= parameter.block_info_.version_ ?
+	      EXIT_COMMIT_ERROR : TFS_SUCCESS;
             if (TFS_SUCCESS != ret)
             {
-              snprintf(parameter.error_msg_, 256, "close block: %u failed, version error: %d:%d",
+              snprintf(parameter.error_msg_, 256,
+		       "close block: %u failed, version error: %d:%d",
                 block_id, block->version(),parameter.block_info_.version_);
             }
           }
           else
           {
-            snprintf(parameter.error_msg_, 256, "close block: %u failed, block not exist, ret: %d", block_id, ret);
+            snprintf(parameter.error_msg_, 256,
+		     "close block: %u failed, block not exist, ret: %d", block_id, ret);
           }
 
           if (TFS_SUCCESS == ret)
           {
             //update block information
-            ret = manager_.update_block_info(parameter.block_info_, parameter.id_, Func::get_monotonic_time(), false);
+            ret = manager_.update_block_info(parameter.block_info_,
+					     parameter.id_, Func::get_monotonic_time(), false);
             if (TFS_SUCCESS != ret)
             {
-              snprintf(parameter.error_msg_,256,"close block: %u successful, but update block information failed, ret: %d", block_id, ret);
+              snprintf(parameter.error_msg_, 256,
+		       "close block: %u successful, but update block \
+information failed, ret: %d", block_id, ret);
             }
           }
         }
@@ -276,7 +292,8 @@ namespace tfs
           {
             time_t now = Func::get_monotonic_time();
             NsRuntimeGlobalInformation& ngi = GFactory::get_runtime_info();
-            ret = ngi.in_discard_newblk_safe_mode_time(now) || is_discard() ? EXIT_DISCARD_NEWBLK_ERROR: TFS_SUCCESS;
+            ret = ngi.in_discard_newblk_safe_mode_time(now) || is_discard() ?
+	      EXIT_DISCARD_NEWBLK_ERROR: TFS_SUCCESS;
             if (TFS_SUCCESS == ret)
             {
               /*block =  manager_.get_block_manager().get(block_id);

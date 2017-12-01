@@ -13,8 +13,8 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
-#include "tbsys.h"
+#include "tbsys/Memory.hpp"
+#include "tbsys/tbsys.h"
 
 #include "common/directory_op.h"
 #include "common/error_msg.h"

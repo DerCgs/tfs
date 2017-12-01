@@ -26,38 +26,16 @@
     *   apt-get install libgoogle-perftools-dev
     *   yum install google-perftools.x86_64
 
-安装tb-common-utils
--------------------
-
-TFS使用tb-common-utils软件包，tb-common-utils包含淘宝使用的基础系统库tbsys和网络库tbnet两个组件；安装tb-common-utils前需要设置环境变量**TBLIB_ROOT**，tbsys和tbnet将会被安装TBLIB_ROOT对应的路径（必须是绝对路径）下，TFS会在这个路径下查找tbsys、tbnet头文件和库。
-
-设置TBLIB_ROOT环境变量
-
-    在~/.bash_profile文件中加入，export TBLIB_ROOT=path_to_tbutil , 然后执行source ~/.bash_profile
-    
-
-下载源码
-
-    # svn co -r 18 http://code.taobao.org/svn/tb-common-utils/trunk tb-common-utils
-    注意： 这里不要checkout最新版本，version18以后的修改导致部分接口不能前向兼容。
-    
-
-编译安装
-
-    # cd tb-common-utils
-    # sh build.sh
-    
-
-如果一切顺利，tb-common-utils已经安装成功到$TBLIB_ROOT路径下；如遇到问题请先阅读后面的**编译FAQ**。
-
 安装TFS
 -------
+
+tb-common-utils has been integrated.
 
 TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默认只编译TFS的nameserver，dataserver，client和tool，以去除对mysql的依赖，需要使用到rcserver（全局资源管理服务），metaserver(TFS自定义文件名服务）的用户请自行编译安装这两个服务。
 
 下载源码
 
-    # svn co http://code.taobao.org/svn/tfs/branches/dev_for_outer_users tfs
+    # git clone https://github.com/yage99/tfs.git
     
 
 编译安装
@@ -70,7 +48,7 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
     
 
 *   --prefix 指定tfs安装路径，默认会被安装到~/tfs_bin目录
-*   --with-release 指定按release版本的参数进行编译，如果不指定这个参数，则会按开发版本比较严格的参数编译，包含-Werror参数，所有的警告都会被当错误，在高版本gcc下会导致项目编译不过，很多开源用户反馈的编译问题都跟这个有关，因为gcc高版本对代码的检查越来越严格，淘宝内部使用的gcc版本是gcc-4.1.2。
+*   --with-release 指定按release版本的参数进行编译，如果不指定这个参数，则会按开发版本比较严格的参数编译，包含-Werror参数，所有的警告都会被当错误，在高版本gcc下会导致项目编译不过，很多开源用户反馈的编译问题都跟这个有关，因为gcc高版本对代码的检查越来越严格，~~淘宝内部使用的gcc版本是gcc-4.1.2~~ My version has been tested in gcc-4.9.x。
 
 至此，TFS已经安装成功了，你可以开始[部署TFS服务][7]。
 
@@ -79,12 +57,6 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
 
     Q: 使用TFS一定需要64bit Liunx？
     A: 是的，否则整个项目不能正常编译通过。
-    
-    Q: 编译TFS过程中出现出现类似tbnet.h:39: fatal error: tbsys.h: No such file or directory的错误提示？
-    A: 需要先安装tb-common-utils软件包。
-    
-    Q: 在安装tb-common-utils过程中，提示设置please set TBLIB_ROOT varialbe first!!？
-    A: 需要先设置TBLIB_ROOT环境变量，再编译安装tb-common-utils。
     
     Q: 编译过程中出现类似警告：格式 ‘%lu’ 需要类型 ‘long unsigned int’，但实参 3 的类型为 ‘size_t’ ？
     A: 你的机器使用的应该是32bit OS，如果你坚持要编译，可以自行修改代码或者直接忽略这些警告。
@@ -114,4 +86,4 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
  [4]: http://zlib.net/
  [5]: http://sourceforge.net/projects/e2fsprogs/
  [6]: http://code.google.com/p/gperftools/downloads/list
- [7]: https://github.com/alibaba/tfs/blob/master/DEPLOY.md
+ [7]: https://github.com/yage99/tfs/blob/master/DEPLOY.md

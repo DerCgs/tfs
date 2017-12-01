@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "oplog_sync_message.h"
 
 namespace tfs

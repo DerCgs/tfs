@@ -11,9 +11,9 @@ LDADD = $(top_builddir)/src/tools/util/libtfstoolsutil.a\
 	$(top_builddir)/src/message/libtfsmessage.a\
 	$(top_builddir)/src/common/libtfscommon.a\
 	$(UNIQUE_STORE_LDFLAGS)\
-  $(TAIR_CACHE_LDFLAGS) \
-	$(TBLIB_ROOT)/lib/libtbnet.a\
-	$(TBLIB_ROOT)/lib/libtbsys.a
+	$(TAIR_CACHE_LDFLAGS) \
+	$(top_builddir)/src/tbnet/libtbnet.a\
+	$(top_builddir)/src/tbsys/libtbsys.a
 
 
 sync_by_blk_SOURCES =  sync_by_blk.cpp sync_file_base.cpp sync_file_base.h

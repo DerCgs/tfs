@@ -1,6 +1,6 @@
 #include "new_client/local_key.h"
 #include "new_client/gc_file.h"
-#include "tblog.h"
+#include "tbsys/tblog.h"
 
 using namespace tfs::client;
 using namespace tfs::common;

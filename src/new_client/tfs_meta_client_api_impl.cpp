@@ -16,7 +16,7 @@
 #include "tfs_meta_client_api_impl.h"
 
 #include <algorithm>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/func.h"
 #include "common/meta_hash_helper.h"
 #include "common/client_manager.h"

@@ -27,7 +27,7 @@
 #include <ext/hash_map>
 #include <errno.h>
 #include <dirent.h>
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 
 #include "ns_define.h"
 #include "common/file_queue.h"

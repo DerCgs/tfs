@@ -17,9 +17,9 @@
 #define TFS_COMMON_STATISTICS_H_
 #include <map>
 
-#include <Timer.h>
-#include <Handle.h>
-#include <Shared.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Handle.h"
+#include "tbsys/Shared.h"
 
 #include "error_msg.h"
 #include "internal.h"

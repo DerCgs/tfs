@@ -27,7 +27,7 @@
 #include "dataserver_define.h"
 #include "data_file.h"
 #include "common/parameter.h"
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 
 namespace tfs
 {

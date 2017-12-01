@@ -17,8 +17,8 @@
 #ifndef TFS_COMMON_CLIENT_MANAGER_H_
 #define TFS_COMMON_CLIENT_MANAGER_H_
 
-#include <tbnet.h>
-#include <Mutex.h>
+#include "tbnet/tbnet.h"
+#include "tbsys/Mutex.h"
 #include <ext/hash_map>
 #include "base_packet.h"
 #include "base_packet_factory.h"

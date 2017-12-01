@@ -14,8 +14,8 @@
  */
 #ifndef TFS_TOOL_BLOCKCONSOLE_H_
 #define TFS_TOOL_BLOCKCONSOLE_H_
-#include <tbnet.h>
-#include <Mutex.h>
+#include "tbnet/tbnet.h"
+#include "tbsys/Mutex.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>

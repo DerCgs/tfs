@@ -20,8 +20,8 @@
 #ifndef TFS_NAMESERVER_DEFINE_H_
 #define TFS_NAMESERVER_DEFINE_H_
 
-#include <Mutex.h>
-#include <tbsys.h>
+#include "tbsys/Mutex.h"
+#include "tbsys/tbsys.h"
 #include "common/internal.h"
 #include "common/func.h"
 #include "common/lock.h"

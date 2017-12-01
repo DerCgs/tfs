@@ -21,7 +21,7 @@
 #include <set>
 #include <string.h>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "common/internal.h"
 
 using namespace std;

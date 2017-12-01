@@ -19,7 +19,7 @@
 
 #include <map>
 #include <ext/hash_map>
-#include <Time.h>
+#include "tbsys/Time.h"
 
 #include "internal.h"
 #include "lock.h"

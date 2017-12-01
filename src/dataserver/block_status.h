@@ -16,7 +16,7 @@
 #ifndef TFS_DATASERVER_BLOCKSTATUS_H_
 #define TFS_DATASERVER_BLOCKSTATUS_H_
 
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 namespace tfs
 {

@@ -1,0 +1,7 @@
+/tb-common-utils/tbnet/INSTALL
+/tb-common-utils/tbnet/Makefile
+/tb-common-utils/tbnet/Makefile.in
+/tb-common-utils/tbnet/aclocal.m4
+*.lo
+*.o
+*.a

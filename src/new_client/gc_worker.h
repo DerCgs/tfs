@@ -16,7 +16,7 @@
 #ifndef TFS_CLIENT_GCWORKER_H_
 #define TFS_CLIENT_GCWORKER_H_
 
-#include <Timer.h>
+#include "tbsys/Timer.h"
 #include "common/error_msg.h"
 #include "tfs_client_api.h"
 #include "local_key.h"

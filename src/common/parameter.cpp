@@ -15,8 +15,8 @@
  */
 #include "parameter.h"
 
-#include <tbsys.h>
-#include "config.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/config.h"
 #include "config_item.h"
 #include "error_msg.h"
 #include "func.h"

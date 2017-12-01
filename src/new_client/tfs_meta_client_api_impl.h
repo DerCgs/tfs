@@ -17,8 +17,8 @@
 #define TFS_CLIENT_META_CLIENT_API_IMPL_H_
 
 #include <stdio.h>
-#include <tbsys.h>
-#include <Timer.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Timer.h"
 #include "common/define.h"
 #include "common/meta_server_define.h"
 #include "common/base_packet_streamer.h"

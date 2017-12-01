@@ -17,7 +17,7 @@
  *      - modify 2010-04-23
  *
  */
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "common/parameter.h"
 #include "common/error_msg.h"
 #include "common/func.h"

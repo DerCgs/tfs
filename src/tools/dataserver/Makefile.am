@@ -1,6 +1,4 @@
 AM_CPPFLAGS=-I$(top_srcdir)/src\
-            -I$(TBLIB_ROOT)/include/tbsys\
-            -I$(TBLIB_ROOT)/include/tbnet\
             $(READLINE_INCLUDE)
 
 AM_LDFLAGS=-lrt -lpthread -ldl $(READLINE_LIB)
@@ -11,7 +9,7 @@ bin_PROGRAMS = clear_file_system\
                read_super_block\
                recover_disk_data_to_cluster\
                recover_sync_file_queue\
-							 convert_name\
+		convert_name\
                reload_config\
                read_index_tool\
                read_block_prefix\
@@ -19,18 +17,18 @@ bin_PROGRAMS = clear_file_system\
                modify_super_block\
                tfsping\
                view_local_key\
-							 gen_block_prefix\
-							 verify_block_to_dataserver
+		gen_block_prefix\
+		verify_block_to_dataserver
 
 LDADD =	$(top_builddir)/src/tools/util/libtfstoolsutil.a\
-				$(top_builddir)/src/dataserver/libdataserver.a\
-				$(top_builddir)/src/new_client/.libs/libtfsclient.a\
-				$(UNIQUE_STORE_LDFLAGS)\
+	$(top_builddir)/src/dataserver/libdataserver.a\
+	$(top_builddir)/src/new_client/.libs/libtfsclient.a\
+	$(UNIQUE_STORE_LDFLAGS)\
         $(TAIR_CACHE_LDFLAGS) \
-				$(top_builddir)/src/message/libtfsmessage.a\
+	$(top_builddir)/src/message/libtfsmessage.a\
         $(top_builddir)/src/common/libtfscommon.a\
-        $(TBLIB_ROOT)/lib/libtbnet.a\
-        $(TBLIB_ROOT)/lib/libtbsys.a
+	$(top_builddir)/src/tbsys/libtbsys.a\
+	$(top_builddir)/src/tbnet/libtbnet.a
 
 clear_file_system_SOURCES = clear_file_system.cpp
 

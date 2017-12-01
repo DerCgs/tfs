@@ -17,9 +17,9 @@
  *      - modify 2010-04-23
  *
  */
-#include <tbsys.h>
-#include <Memory.hpp>
-#include <atomic.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
+#include "tbsys/atomic.h"
 #include "ns_define.h"
 #include "layout_manager.h"
 #include "global_factory.h"

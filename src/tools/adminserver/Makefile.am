@@ -10,7 +10,7 @@ bin_PROGRAMS = adminservertool
 LDADD = $(top_builddir)/src/tools/util/libtfstoolsutil.a\
         $(top_builddir)/src/message/libtfsmessage.a\
 	$(top_builddir)/src/common/libtfscommon.a\
-	$(TBLIB_ROOT)/lib/libtbnet.a\
-	$(TBLIB_ROOT)/lib/libtbsys.a
+	$(top_builddir)/src/tbnet/libtbnet.a\
+	$(top_builddir)/src/tbsys/libtbsys.a
 
 adminservertool_SOURCES =  adminservertool.cpp

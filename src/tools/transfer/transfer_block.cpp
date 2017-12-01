@@ -18,10 +18,10 @@
 
 #include <vector>
 
-#include "tbsys.h"
-#include "Memory.hpp"
-#include "Handle.h"
-#include "TbThread.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
+#include "tbsys/Handle.h"
+#include "tbsys/TbThread.h"
 
 #include "common/func.h"
 #include "common/internal.h"

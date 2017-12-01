@@ -16,8 +16,8 @@
 #include "physical_block.h"
 #include "common/error_msg.h"
 #include "blockfile_manager.h"
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 
 namespace tfs
 {

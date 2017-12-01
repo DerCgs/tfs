@@ -16,7 +16,7 @@
 #ifndef TFS_CLIENT_SEGMENT_CONTAINER_H_
 #define TFS_CLIENT_SEGMENT_CONTAINER_H_
 
-#include "Memory.hpp"
+#include "tbsys/Memory.hpp"
 #include "common/internal.h"
 #include "common/error_msg.h"
 #include "common/file_op.h"

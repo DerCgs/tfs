@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "new_client/fsname.h"
 
 using namespace tfs::client;
