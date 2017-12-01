@@ -5,7 +5,7 @@ AC_PREREQ(2.59)
 AC_INIT([tfs], 2.2.0, zhangya998@gmail.com)
 AC_CONFIG_SRCDIR([src/common/config_item.h])
 
-AM_INIT_AUTOMAKE(tfs, 2.2.0)
+AM_INIT_AUTOMAKE
 # Checks for programs.
 AC_PROG_AWK
 AC_PROG_CXX
