@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/parameter.h"
 #include "block_collect.h"
 #include "server_collect.h"
@@ -226,7 +226,7 @@ namespace tfs
           if (ret)
           {
             //check block version
-            if (__gnu_cxx::abs(info_.version_ - info.version_) <= VERSION_AGREED_MASK)//version agreed
+            if (std::abs(info_.version_ - info.version_) <= VERSION_AGREED_MASK)//version agreed
             {
               if (size >= SYSPARAM_NAMESERVER.max_replication_)
               {

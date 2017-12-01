@@ -17,7 +17,7 @@
 #define TFS_COMMON_FILE_QUEUE_H_
 
 #include "internal.h"
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 namespace tfs
 {

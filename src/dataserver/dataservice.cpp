@@ -17,7 +17,7 @@
  */
 #include "dataservice.h"
 
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/new_client.h"
 #include "common/client_manager.h"
 #include "common/func.h"

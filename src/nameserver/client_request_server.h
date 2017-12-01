@@ -17,7 +17,7 @@
  */
 #ifndef TFS_NAMESERVER_CLIENT_REQUEST_SERVER_H_
 #define TFS_NAMESERVER_CLIENT_REQUEST_SERVER_H_
-#include <tbnet.h>
+#include "tbnet/tbnet.h"
 #include "common/lock.h"
 #include "block_collect.h"
 #include "server_collect.h"

@@ -17,8 +17,8 @@
  *      - modify 2010-04-23
  *
  */
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include "oplog.h"
 #include "common/error_msg.h"
 #include "common/directory_op.h"

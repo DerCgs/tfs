@@ -13,8 +13,8 @@
  *      - initial release
  *
  */
-#include <Time.h>
-#include <Memory.hpp>
+#include "tbsys/Time.h"
+#include "tbsys/Memory.hpp"
 #include "message/replicate_block_message.h"
 #include "message/write_data_message.h"
 #include "common/client_manager.h"

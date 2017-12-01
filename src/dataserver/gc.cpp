@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "gc.h"
 #include "common/error_msg.h"
 #include "common/config_item.h"

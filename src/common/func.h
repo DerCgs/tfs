@@ -36,7 +36,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 #include "internal.h"
 

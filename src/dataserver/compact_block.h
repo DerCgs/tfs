@@ -18,8 +18,8 @@
 #ifndef TFS_DATASERVER_COMPACTBLOCK_H_
 #define TFS_DATASERVER_COMPACTBLOCK_H_
 
-#include <Mutex.h>
-#include <Monitor.h>
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
 #include "logic_block.h"
 #include "blockfile_manager.h"
 #include "dataserver_define.h"

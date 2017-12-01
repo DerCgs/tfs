@@ -20,7 +20,7 @@
 #ifndef TFS_DATASERVER_BLOCKCHECKER_H_
 #define TFS_DATASERVER_BLOCKCHECKER_H_
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 #include "logic_block.h"
 #include "dataserver_define.h"
 #include "file_repair.h"

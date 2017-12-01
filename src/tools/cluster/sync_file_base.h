@@ -11,6 +11,8 @@
  * Authors:
  *   chuyu <chuyu@taobao.com>
  *      - initial release
+ *   yage <zhangya998@gmail.com>
+ *       modify-2017/11/30
  *
  */
 #ifndef TFS_TOOLS_SYNCFILEBASE_H_
@@ -18,15 +20,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <tbsys.h>
-#include <TbThread.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/TbThread.h"
 #include <vector>
 #include <string>
 #include <sys/types.h>
 #include <dirent.h>
 #include <libgen.h>
-#include <Mutex.h>
-#include <Memory.hpp>
+#include "tbsys/Mutex.h"
+#include "tbsys/Memory.hpp"
 
 #include "common/func.h"
 #include "common/directory_op.h"

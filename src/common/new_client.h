@@ -15,12 +15,12 @@
  */
 #ifndef TFS_COMMON_NEW_CLIENT_H_
 #define TFS_COMMON_NEW_CLIENT_H_
-#include <tbsys.h>
-#include <tbnet.h>
+#include "tbsys/tbsys.h"
+#include "tbnet/tbnet.h"
 #include <map>
 #include <ext/hash_map>
-#include <Monitor.h>
-#include <Mutex.h>
+#include "tbsys/Monitor.h"
+#include "tbsys/Mutex.h"
 #include "base_packet.h"
 
 namespace tfs
