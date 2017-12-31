@@ -61,7 +61,8 @@ namespace tfs
         virtual ~DataService();
 
         /** application parse args*/
-        virtual int parse_common_line_args(int argc, char* argv[], std::string& errmsg);
+        virtual int parse_common_line_args(int argc, char* argv[],
+                std::string& errmsg);
 
         /** get listen port*/
         virtual int get_listen_port() const ;
@@ -72,7 +73,8 @@ namespace tfs
         /** destroy application data*/
         virtual int destroy_service();
 
-        /** create the packet streamer, this is used to create packet according to packet code */
+        /** create the packet streamer, this is used to create packet according
+         * to packet code */
         virtual tbnet::IPacketStreamer* create_packet_streamer()
         {
           return new common::BasePacketStreamer();
@@ -97,7 +99,8 @@ namespace tfs
         }
 
         /** handle single packet */
-        virtual tbnet::IPacketHandler::HPRetCode handlePacket(tbnet::Connection *connection, tbnet::Packet *packet);
+        virtual tbnet::IPacketHandler::HPRetCode handlePacket(
+                tbnet::Connection *connection, tbnet::Packet *packet);
 
         /** handle packet*/
         virtual bool handlePacketQueue(tbnet::Packet *packet, void *args);
@@ -105,7 +108,8 @@ namespace tfs
         bool check_response(common::NewClient* client);
         int callback(common::NewClient* client);
 
-        int post_message_to_server(common::BasePacket* message, const common::VUINT64& ds_list);
+        int post_message_to_server(
+                common::BasePacket* message, const common::VUINT64& ds_list);
 
         int stop_heart();
 
@@ -127,7 +131,8 @@ namespace tfs
         int batch_write_info(message::WriteInfoBatchMessage* message);
 
         int read_data(message::ReadDataMessage* message);
-        int read_data_extra(message::ReadDataMessageV2* message, int32_t version);
+        int read_data_extra(message::ReadDataMessageV2* message,
+                int32_t version);
         int read_raw_data(message::ReadRawDataMessage* message);
         int read_file_info(message::FileInfoMessage* message);
 

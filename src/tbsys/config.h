@@ -59,15 +59,19 @@ namespace tbsys {
             // 加载一个文件
             int load(const char *filename);
             // 取一个字符串
-            const char *getString(const char *section, const std::string& key, const char *d = NULL);
+            const char *getString(const char *section, const std::string& key, 
+                    const char *d = NULL);
             // 取一string列表
-            std::vector<const char*> getStringList(const char *section, const std::string& key);
+            std::vector<const char*> getStringList(const char *section, 
+                    const std::string& key);
             // 取一个整型
             int getInt(char const *section, const std::string& key, int d = 0);
             // 取一整型列表
-            std::vector<int> getIntList(const char *section, const std::string& key);
+            std::vector<int> getIntList(const char *section, 
+                    const std::string& key);
             // 取一section下所有的key
-            int getSectionKey(const char *section, std::vector<std::string> &keys);
+            int getSectionKey(const char *section, 
+                    std::vector<std::string> &keys);
             // 得到所有section的名字
             int getSectionName(std::vector<std::string> &sections);
             // 完整的配置文件字符串

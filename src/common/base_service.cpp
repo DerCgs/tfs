@@ -170,6 +170,9 @@ namespace tfs
       return work_queue_size_;
     }
 
+    /**
+     * get the local address configured by conf file
+     */
     const char* BaseService::get_ip_addr() const
     {
       return TBSYS_CONFIG.getString(CONF_SN_PUBLIC, CONF_IP_ADDR, NULL);
@@ -191,7 +194,8 @@ namespace tfs
         main_workers_.setThreadParameter(thread_count, this, NULL);
         main_workers_.start();
 
-        work_queue_size_ = TBSYS_CONFIG.getInt(CONF_SN_PUBLIC, CONF_TASK_MAX_QUEUE_SIZE, 10240);
+        work_queue_size_ = TBSYS_CONFIG.getInt(CONF_SN_PUBLIC,
+                CONF_TASK_MAX_QUEUE_SIZE, 10240);
         work_queue_size_ = std::max(work_queue_size_, 10240);
         work_queue_size_ = std::min(work_queue_size_, 40960);
         timer_ = new tbutil::Timer();
