@@ -122,7 +122,8 @@ namespace tfs
       {
         log_file_path_ = work_dir;
         log_file_path_ += "/logs/dataserver";
-        log_file_path_ = SYSPARAM_DATASERVER.get_real_file_name(log_file_path_, server_index_, "log");
+        log_file_path_ = SYSPARAM_DATASERVER.get_real_file_name(
+                log_file_path_, server_index_, "log");
         log_file_path = log_file_path_.c_str();
       }
       return log_file_path;
@@ -136,7 +137,8 @@ namespace tfs
       {
         pid_file_path_ = work_dir;
         pid_file_path_ += "/logs/dataserver";
-        pid_file_path_ = SYSPARAM_DATASERVER.get_real_file_name(pid_file_path_, server_index_, "pid");
+        pid_file_path_ = SYSPARAM_DATASERVER.get_real_file_name(
+                pid_file_path_, server_index_, "pid");
         pid_file_path = pid_file_path_.c_str();
       }
       return pid_file_path;
@@ -156,7 +158,8 @@ namespace tfs
     int DataService::initialize(int argc, char* argv[])
     {
       UNUSED(argc);
-      int32_t iret = SYSPARAM_DATASERVER.initialize(config_file_, server_index_);
+      int32_t iret = SYSPARAM_DATASERVER.initialize(
+              config_file_, server_index_);
       if (TFS_SUCCESS != iret)
       {
         TBSYS_LOG(ERROR, "load dataserver parameter failed: %d", iret);
@@ -178,7 +181,8 @@ namespace tfs
           if (!DirectoryOp::create_full_path(storage_dir.c_str()))
           {
             iret = EXIT_GENERAL_ERROR;
-            TBSYS_LOG(ERROR, "create directory %s error: %s", storage_dir.c_str(), strerror(errno));
+            TBSYS_LOG(ERROR, "create directory %s error: %s",
+                    storage_dir.c_str(), strerror(errno));
           }
           if ( TFS_SUCCESS == iret)
           {
@@ -186,7 +190,8 @@ namespace tfs
             if (!DirectoryOp::create_full_path(storage_dir.c_str()))
             {
               iret = EXIT_GENERAL_ERROR;
-              TBSYS_LOG(ERROR, "create directory %s error: %s", storage_dir.c_str(), strerror(errno));
+              TBSYS_LOG(ERROR, "create directory %s error: %s",
+                      storage_dir.c_str(), strerror(errno));
             }
           }
           if (TFS_SUCCESS == iret)
@@ -195,7 +200,8 @@ namespace tfs
             if (!DirectoryOp::create_full_path(storage_dir.c_str()))
             {
               iret = EXIT_GENERAL_ERROR;
-              TBSYS_LOG(ERROR, "create directory %s error: %s", storage_dir.c_str(), strerror(errno));
+              TBSYS_LOG(ERROR, "create directory %s error: %s",
+                      storage_dir.c_str(), strerror(errno));
             }
           }
         }
@@ -231,7 +237,8 @@ namespace tfs
             uint32_t local_ip   = Func::get_local_addr(dev_name);
             if (local_ip != ip_addr_id)
             {
-              TBSYS_LOG(WARN, "ip '%s' is not local ip, local ip: %s",ip_addr, tbsys::CNetUtil::addrToString(local_ip).c_str());
+              TBSYS_LOG(WARN, "ip '%s' is not local ip, local ip: %s",
+                      ip_addr, tbsys::CNetUtil::addrToString(local_ip).c_str());
               iret = EXIT_CONFIG_ERROR;
             }
           }

@@ -17,7 +17,6 @@
 using namespace std;
 
 namespace tbsys {
-    
     static CConfig _config;
 
     /**
@@ -51,10 +50,10 @@ namespace tbsys {
     int CConfig::parseValue(char *str, char *key, char *val)
     {
         char           *p, *p1, *name, *value;
-    
+
         if (str == NULL)
             return -1;
-    
+
         p = str;
         // 去前置空格
         while ((*p) == ' ' || (*p) == '\t' || (*p) == '\r' || (*p) == '\n') p++;
@@ -75,7 +74,7 @@ namespace tbsys {
         value = p1 + 1;
         while ((*(p1 - 1)) == ' ') p1--;
         (*p1) = '\0';
-    
+
         while ((*value) == ' ') value++;
         p = strchr(value, '#');
         if (p == NULL) p = value + strlen(value);
@@ -83,23 +82,23 @@ namespace tbsys {
         (*p) = '\0';
         if (name[0] == '\0')
             return -2;
-    
+
         strcpy(key, name);
         strcpy(val, value);
-    
+
         return 0;
     }
 
     /* 是段名 */
     char *CConfig::isSectionName(char *str) {
-        if (str == NULL || strlen(str) <= 2 || (*str) != '[') 
+        if (str == NULL || strlen(str) <= 2 || (*str) != '[')
             return NULL;
-            
+
         char *p = str + strlen(str);
         while ((*(p-1)) == ' ' || (*(p-1)) == '\t' || (*(p-1)) == '\r' || (*(p-1)) == '\n') p--;
         if (*(p-1) != ']') return NULL;
         *(p-1) = '\0';
-        
+
         p = str + 1;
         while(*p) {
             if ((*p >= 'A' && *p <= 'Z') || (*p >= 'a' && *p <= 'z') || (*p >= '0' && *p <= '9') || (*p == '_')) {
@@ -110,7 +109,7 @@ namespace tbsys {
         }
         return (str+1);
     }
-    
+
     /**
      * 加载文件
      */
@@ -119,12 +118,12 @@ namespace tbsys {
         FILE           *fp;
         char            key[128], value[4096], data[4096];
         int             ret, line = 0;
-        
+
         if ((fp = fopen(filename, "rb")) == NULL) {
             TBSYS_LOG(ERROR, "不能打开配置文件: %s", filename);
             return EXIT_FAILURE;
         }
-        
+
         STR_STR_MAP *m = NULL;
         while (fgets(data, 4096, fp)) {
             line ++;
@@ -153,7 +152,7 @@ namespace tbsys {
                 TBSYS_LOG(ERROR, "没在配置section, Line: %d, %s", line, data);
                 fclose(fp);
                 return EXIT_FAILURE;
-            }            
+            }
             //CStringUtil::strToLower(key);
             STR_STR_MAP_ITER it1 = m->find(key);
             if (it1 != m->end()) {
@@ -170,8 +169,8 @@ namespace tbsys {
     /**
      * 取一个string
      */
-    const char *CConfig::getString(const char *section, const string& key, const char *d)
-    {
+    const char *CConfig::getString(const char *section, const string& key,
+            const char *d) {
         STR_MAP_ITER it = m_configMap.find(section);
         if (it == m_configMap.end()) {
             return d;
@@ -182,11 +181,12 @@ namespace tbsys {
         }
         return it1->second.c_str();
     }
-    
+
     /**
      * 取一string列表
      */
-    vector<const char*> CConfig::getStringList(const char *section, const string& key) {
+    vector<const char*> CConfig::getStringList(const char *section,
+            const string& key) {
         vector<const char*> ret;
         STR_MAP_ITER it = m_configMap.find(section);
         if (it == m_configMap.end()) {
@@ -216,7 +216,7 @@ namespace tbsys {
         const char *str = getString(section, key);
         return CStringUtil::strToInt(str, d);
     }
-    
+
     /**
      * 取一int list
      */
@@ -241,7 +241,7 @@ namespace tbsys {
         ret.push_back(atoi(p));
         return ret;
     }
-    
+
     // 取一section下所有的key
     int CConfig::getSectionKey(const char *section, vector<string> &keys)
     {
@@ -255,7 +255,7 @@ namespace tbsys {
         }
         return (int)keys.size();
     }
-             
+
     // 得到所有section的名字
     int CConfig::getSectionName(vector<string> &sections)
     {
@@ -272,11 +272,11 @@ namespace tbsys {
     {
         string result;
         STR_MAP_ITER it;
-    	STR_STR_MAP_ITER it1;
-    	for(it=m_configMap.begin(); it!=m_configMap.end(); ++it) {
+        STR_STR_MAP_ITER it1;
+        for(it=m_configMap.begin(); it!=m_configMap.end(); ++it) {
             result += "[" + it->first + "]\n";
-    	    for(it1=it->second->begin(); it1!=it->second->end(); ++it1) {
-    	        string s = it1->second.c_str();
+            for(it1=it->second->begin(); it1!=it->second->end(); ++it1) {
+                string s = it1->second.c_str();
                 result += "    " + it1->first + " = " + s + "\n";
                 if (s.size() != it1->second.size()) {
                     char *data = (char*)it1->second.data();
@@ -284,13 +284,13 @@ namespace tbsys {
                     for(int i=0; i<(int)it1->second.size(); i++) {
                         if (data[i] != '\0') continue;
                         if (p) result += "    " + it1->first + " = " + p + "\n";
-    	                p = data+i+1;
-    	            }
-    	            if (p) result += "    " + it1->first + " = " + p + "\n";
-    	        }
+                        p = data+i+1;
+                    }
+                    if (p) result += "    " + it1->first + " = " + p + "\n";
+                }
             }
         }
-        result += "\n";    
+        result += "\n";
         return result;
     }
 }
