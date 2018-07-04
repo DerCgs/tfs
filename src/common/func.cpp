@@ -25,7 +25,8 @@ namespace tfs
   namespace common
   {
     // disk usage
-    int Func::get_disk_usage(const char* path, int64_t* used_bytes, int64_t* total_bytes)
+    int Func::get_disk_usage(const char* path, int64_t* used_bytes,
+            int64_t* total_bytes)
     {
       *used_bytes = 1;
       *total_bytes = 1;
@@ -62,7 +63,8 @@ namespace tfs
 
       mode_t umask_value = umask(0);
       umask(umask_value);
-      mode_t mode = ((S_IRWXU | S_IRWXG | S_IRWXO) & (~umask_value)) | S_IWUSR | S_IXUSR;
+      mode_t mode = ((S_IRWXU | S_IRWXG | S_IRWXO) &
+              (~umask_value)) | S_IWUSR | S_IXUSR;
 
       char* slash = dirpath;
       while (*slash == '/')
@@ -115,49 +117,51 @@ namespace tfs
       return TFS_SUCCESS;
     }
 
-		int Func::get_parent_dir(const char* file_path, char* dir_path, const int32_t dir_buf_len)
-		{
-			int ret = TFS_SUCCESS;
-			if (NULL == file_path || NULL == dir_path || dir_buf_len <= 1) // at least .
-			{
-				ret = EXIT_PARAMETER_ERROR;
-			}
-			else
-			{
- 				int length = strlen(file_path);
-				while (length > 0 && '/' == file_path[length-1])  // trailing slash
-				{
-					length--;
-				}
+    int Func::get_parent_dir(const char* file_path, char* dir_path,
+            const int32_t dir_buf_len)
+    {
+      int ret = TFS_SUCCESS;
+      if (NULL == file_path || NULL == dir_path || dir_buf_len <= 1)
+          // at least .
+      {
+        ret = EXIT_PARAMETER_ERROR;
+      }
+      else
+      {
+         int length = strlen(file_path);
+        while (length > 0 && '/' == file_path[length-1])  // trailing slash
+        {
+          length--;
+        }
 
-      	for (; length > 0; length--)        // find slash
-      	{
-        	if ('/' ==file_path[length - 1])
-        	{
-          	break;
-        	}
-      	}
+        for (; length > 0; length--)        // find slash
+        {
+          if ('/' ==file_path[length - 1])
+          {
+            break;
+          }
+        }
 
 
-      	if (0 == length)
-      	{
-					strncpy(dir_path, ".", dir_buf_len);
-      	}
-     	  else
-      	{
-					if (dir_buf_len <= length)
-					{
-						ret = EXIT_PARAMETER_ERROR;
-					}
-					else
-					{
-        		strncpy(dir_path, file_path, length);
+        if (0 == length)
+        {
+          strncpy(dir_path, ".", dir_buf_len);
+        }
+         else
+        {
+          if (dir_buf_len <= length)
+          {
+            ret = EXIT_PARAMETER_ERROR;
+          }
+          else
+          {
+            strncpy(dir_path, file_path, length);
             dir_path[length] = '\0';
-					}
-     		}
-			}
-			return ret;
-		}
+          }
+         }
+      }
+      return ret;
+    }
 
     // get self ip
     uint32_t Func::get_local_addr(const char* dev_name)
@@ -245,7 +249,8 @@ namespace tfs
     }
 
     // set local ip
-    int Func::assign_ip_addr(const char* ifname, const char* ip, const char* mask)
+    int Func::assign_ip_addr(const char* ifname, const char* ip,
+            const char* mask)
     {
       int fd;
       struct ifreq ifr;

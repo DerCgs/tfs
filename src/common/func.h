@@ -47,21 +47,22 @@ namespace tfs
     class Func
     {
     public:
-      static int get_disk_usage(const char* path, int64_t* used_bytes, int64_t* total_bytes);
+      static int get_disk_usage(const char* path, int64_t* used_bytes,
+              int64_t* total_bytes);
       static int get_load_avg();
       static int make_directory(char* path);
       static int get_base_name(char* path, char* dirpath);
 
-			/**
-			 * @brief get parent dir by file_path
-			 *
-			 * @param file_path: file path
-			 * @param dir_path: result parent dir
-			 * @param dir_buf_len: dir path buffer length
-			 *
-			 * @return
-			 */
-			static int get_parent_dir(const char* file_path, char* dir_path, const int32_t dir_buf_len);
+      /**
+       * @brief get parent dir by file_path
+       *
+       * @param file_path: file path
+       * @param dir_path: result parent dir
+       * @param dir_buf_len: dir path buffer length
+       *
+       * @return
+       */
+      static int get_parent_dir(const char* file_path, char* dir_path, const int32_t dir_buf_len);
 
       static uint32_t get_local_addr(const char* dev_name = NULL);
       static bool is_local_addr(const uint32_t ip);
@@ -88,11 +89,13 @@ namespace tfs
       static void sleep(const float f_heart_interval, bool& stop);
       static void sleep(const float f_heart_interval, int32_t& stop);
       static bool hour_range(int min, int max);
-      static int32_t split_string(const char* line, const char del, std::vector<std::string>& fields);
+      static int32_t split_string(const char* line, const char del,
+              std::vector<std::string>& fields);
 
       static int start_daemon(const char *pid_file, const char *log_file);
       static void hex_dump(const void* data, const int32_t size,
-                           const bool char_type = true, const int32_t log_level = TBSYS_LOG_LEVEL_DEBUG);
+                           const bool char_type = true,
+                           const int32_t log_level = TBSYS_LOG_LEVEL_DEBUG);
       /* bit opertion */
       static int32_t set_bit(int32_t& data, int32_t index);
       static int32_t clr_bit(int32_t& data, int32_t index);
