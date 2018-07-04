@@ -38,9 +38,11 @@ namespace tfs
     static const int32_t SEND_BLOCK_TO_NS_CREATE_NETWORK_CLIENT_ERROR = -3;
     static const int32_t SEND_BLOCK_TO_NS_NETWORK_ERROR = -4;
 
-    static int send_msg_to_server_helper(const uint64_t server, std::vector<uint64_t>& servers)
+    static int send_msg_to_server_helper(const uint64_t server,
+            std::vector<uint64_t>& servers)
     {
-      std::vector<uint64_t>::iterator iter = std::find(servers.begin(), servers.end(), server);
+      std::vector<uint64_t>::iterator iter = std::find(servers.begin(),
+              servers.end(), server);
       if (iter != servers.end())
       {
         servers.erase(iter);
@@ -74,7 +76,8 @@ namespace tfs
 
     }
 
-    int DataService::parse_common_line_args(int argc, char* argv[], std::string& errmsg)
+    int DataService::parse_common_line_args(int argc, char* argv[],
+            std::string& errmsg)
     {
       char buf[256] = {'\0'};
       int32_t index = 0;
