@@ -20,11 +20,13 @@
 *   uuid-devel 用于生成全局唯一ID 
     *   [下载源码安装][5]
     *   apt-get install uuid-dev
-    *   yum install e2fsprogs-devel.x86_64
+    *   yum install libuuid-devel
 *   tcmalloc google的内存管理库 
     *   [下载源码安装][6]
     *   apt-get install libgoogle-perftools-dev
-    *   yum install google-perftools.x86_64
+    *   yum install gperftools.x86_64
+*   zlib
+    *   yum install zlib-devel
 
 安装TFS
 -------
@@ -48,7 +50,7 @@ TFS开源用户大都只使用TFS的基本功能，所以这个版本我们默�
     
 
 *   --prefix 指定tfs安装路径，默认会被安装到~/tfs_bin目录
-*   --with-release 指定按release版本的参数进行编译，如果不指定这个参数，则会按开发版本比较严格的参数编译，包含-Werror参数，所有的警告都会被当错误，在高版本gcc下会导致项目编译不过，很多开源用户反馈的编译问题都跟这个有关，因为gcc高版本对代码的检查越来越严格，~~淘宝内部使用的gcc版本是gcc-4.1.2~~ My version has been tested in gcc-4.9.x。
+*   --with-release 指定按release版本的参数进行编译，如果不指定这个参数，则会按开发版本比较严格的参数编译，包含-Werror参数，所有的警告都会被当错误，在高版本gcc下会导致项目编译不过，很多开源用户反馈的编译问题都跟这个有关，因为gcc高版本对代码的检查越来越严格，~~淘宝内部使用的gcc版本是gcc-4.1.2~~ My version has been tested in gcc-4.9.x/gcc-5.3.x。
 
 至此，TFS已经安装成功了，你可以开始[部署TFS服务][7]。
 

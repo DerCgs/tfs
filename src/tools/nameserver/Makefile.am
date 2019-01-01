@@ -2,7 +2,7 @@ AM_CPPFLAGS=-I$(top_srcdir)/src\
             $(TAIR_CACHE_CPPFLAGS)\
 	    $(READLINE_INCLUDE)
 
-LDFLAGS=$(READLINE_LIB)
+LDFLAGS=$(READLINE_LIB) -luuid -lz
 
 bin_PROGRAMS = admintool showsyncoplog rmsyncoplog ssm\
                performance syncbyfile\
