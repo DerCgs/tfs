@@ -361,7 +361,8 @@ namespace tfs
                 machine.machine_id_ = machine_id;
                 machine.init(server, old_server);
                 machine.add(server, old_server);
-                machine_map_.insert(make_pair<uint64_t, MachineShow> (machine_id, machine));
+		/** c++11 no need to define type <uint64_t&, MachineShow&> */
+                machine_map_.insert(make_pair(machine_id, machine));
               }
             }
           }
