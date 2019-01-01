@@ -170,7 +170,7 @@ namespace tfs
       }
       bool operator<<(std::ostream& os) const
       {
-        return os << server_id_;
+        return (bool)(os << server_id_);
       }
     };
 
