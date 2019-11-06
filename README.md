@@ -7,6 +7,9 @@ Overview
 Aiming at a distributed file system with high availability, high performance and low cost, TFS is a linux-based file system which provides high reliability and concurrent access by redundancy, backup and load balance technology.
 TFS is mainly designed for small files less than 1MB in size. It adopts flat structure instead of the traditional directory structure. TFS will generate a 18 byte length filename after storing data uploaded by users. Users can access their data by the uniqle filename.
 
+由于阿里官方不再维护该项目，对新版gcc兼容问题较大。
+因此本Repo准备继续该项目的开发，解决相关问题。
+
 Documents
 ---------
 ### [Install](https://github.com/yage99/tfs/blob/master/INSTALL.md)
