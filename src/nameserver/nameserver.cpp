@@ -676,65 +676,61 @@ namespace tfs
       if (TFS_SUCCESS != ret)
       {
         TBSYS_LOG(INFO, "%s", "GFactory initialize error, must be exit");
+	return ret;
       }
-      else
-      {
-        const char* ns_ip = TBSYS_CONFIG.getString(CONF_SN_NAMESERVER, CONF_IP_ADDR_LIST);
-        ret = NULL == ns_ip ? EXIT_GENERAL_ERROR : TFS_SUCCESS;
-        if (TFS_SUCCESS != ret)
-        {
-          TBSYS_LOG(INFO, "%s", "initialize ns ip is null or ns port <= 0, must be exit");
-        }
 
-        if (TFS_SUCCESS == ret)
-        {
-          std::vector < uint32_t > ns_ip_list;
-          char buffer[256];
-          strncpy(buffer, ns_ip, 256);
-          char *t = NULL;
-          char *s = buffer;
-          while ((t = strsep(&s, "|")) != NULL)
-          {
-            ns_ip_list.push_back(tbsys::CNetUtil::getAddr(t));
-          }
-          ret = 2U != ns_ip_list.size() ? EXIT_GENERAL_ERROR : TFS_SUCCESS;
-          if (TFS_SUCCESS != ret)
-          {
-            TBSYS_LOG(INFO, "%s", "must have two ns,check your ns' list");
-          }
-          else
-          {
-            bool flag = false;
-            uint32_t local_ip = 0;
-            std::vector<uint32_t>::iterator iter = ns_ip_list.begin();
-            for (; iter != ns_ip_list.end() && !flag; ++iter)
-            {
-              if ((flag = Func::is_local_addr((*iter))))
-                local_ip = (*iter);
-            }
-            ret = flag ? TFS_SUCCESS : EXIT_GENERAL_ERROR;
-            if (TFS_SUCCESS != ret)
-            {
-              TBSYS_LOG(INFO, "ip list: %s not in %s, must be exit", ns_ip, get_dev());
-            }
-            else
-            {
-              NsRuntimeGlobalInformation& ngi = GFactory::get_runtime_info();
-              ngi.owner_status_ = NS_STATUS_UNINITIALIZE;
-              ngi.peer_status_ = NS_STATUS_UNINITIALIZE;
-              ngi.vip_ = Func::get_addr(get_ip_addr());
-              for (iter = ns_ip_list.begin();iter != ns_ip_list.end(); ++iter)
-              {
-                if (local_ip == (*iter))
-                  ngi.owner_ip_port_ = tbsys::CNetUtil::ipToAddr((*iter), get_port());
-                else
-                  ngi.peer_ip_port_ = tbsys::CNetUtil::ipToAddr((*iter), get_port());
-              }
-              ngi.switch_role(true);
-            }
-          }
-        }
+      const char* ns_ip = TBSYS_CONFIG.getString(CONF_SN_NAMESERVER, CONF_IP_ADDR_LIST);
+      ret = NULL == ns_ip ? EXIT_GENERAL_ERROR : TFS_SUCCESS;
+      if (TFS_SUCCESS != ret)
+      {
+        TBSYS_LOG(INFO, "%s", "initialize ns ip is null or ns port <= 0, must be exit");
+	return ret;
       }
+      
+      std::vector < uint32_t > ns_ip_list;
+      char buffer[256];
+      strncpy(buffer, ns_ip, 256);
+      char *t = NULL;
+      char *s = buffer;
+      while ((t = strsep(&s, "|")) != NULL)
+      {
+        ns_ip_list.push_back(tbsys::CNetUtil::getAddr(t));
+      }
+      ret = 2U != ns_ip_list.size() ? EXIT_GENERAL_ERROR : TFS_SUCCESS;
+      if (TFS_SUCCESS != ret)
+      {
+        TBSYS_LOG(INFO, "%s", "must have two ns,check your ns' list");
+	return ret;
+      }
+      
+      bool flag = false;
+      uint32_t local_ip = 0;
+      std::vector<uint32_t>::iterator iter = ns_ip_list.begin();
+      for (; iter != ns_ip_list.end() && !flag; ++iter)
+      {
+        if ((flag = Func::is_local_addr((*iter))))
+          local_ip = (*iter);
+      }
+      ret = flag ? TFS_SUCCESS : EXIT_GENERAL_ERROR;
+      if (TFS_SUCCESS != ret)
+      {
+        TBSYS_LOG(INFO, "ip list: %s not in %s, must be exit", ns_ip, get_dev());
+	return ret;
+      }
+      
+      NsRuntimeGlobalInformation& ngi = GFactory::get_runtime_info();
+      ngi.owner_status_ = NS_STATUS_UNINITIALIZE;
+      ngi.peer_status_ = NS_STATUS_UNINITIALIZE;
+      ngi.vip_ = Func::get_addr(get_ip_addr());
+      for (iter = ns_ip_list.begin();iter != ns_ip_list.end(); ++iter)
+      {
+        if (local_ip == (*iter))
+          ngi.owner_ip_port_ = tbsys::CNetUtil::ipToAddr((*iter), get_port());
+        else
+          ngi.peer_ip_port_ = tbsys::CNetUtil::ipToAddr((*iter), get_port());
+      }
+      ngi.switch_role(true);
+      
       return ret;
     }
 
