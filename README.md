@@ -10,6 +10,8 @@ TFS is mainly designed for small files less than 1MB in size. It adopts flat str
 由于阿里官方不再维护该项目，对新版gcc兼容问题较大。
 因此本Repo准备继续该项目的开发，解决相关问题。
 
+目前，本项目已在CentOS7和Ubuntu 18.04下编译通过。
+
 Documents
 ---------
 ### [Install](https://github.com/yage99/tfs/blob/master/INSTALL.md)

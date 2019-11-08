@@ -1,3 +1,17 @@
+一键安装包
+---------------
+
+## CentOS7
+
+    # git clone https://github.com/yage99/tfs.git
+    # scripts/install_centos7.sh
+
+## Ubuntu 18.04
+
+    # git clone https://github.com/yage99/tfs.git
+    # scripts/install_ubuntu.sh
+   
+
 安装依赖的软件包
 ----------------
 
