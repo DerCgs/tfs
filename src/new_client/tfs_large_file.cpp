@@ -185,9 +185,9 @@ int TfsLargeFile::fstat(TfsFileStat* file_info, const TfsStatType mode)
   return ret;
 }
 
-int TfsLargeFile::close()
+int TfsLargeFile::close(const int32_t force_status)
 {
-  return close_ex();
+  return close_ex(force_status);
 }
 
 int64_t TfsLargeFile::get_file_length()
@@ -523,7 +523,7 @@ int TfsLargeFile::load_meta(int32_t flags)
 
   // read all meta file once at best
   // should succeed in nearly all cases
-  int retry_count = ClientConfig::client_retry_count_;
+  int32_t retry_count = ClientConfig::client_retry_count_;
   do {
     ret = read_process_ex(read_size, FILE_PHASE_READ_FILE_V2);
     if (TFS_SUCCESS != ret)

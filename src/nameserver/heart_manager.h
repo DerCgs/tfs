@@ -20,7 +20,10 @@
 #ifndef TFS_NAMESERVER_HEART_MANAGEMENT_
 #define TFS_NAMESERVER_HEART_MANAGEMENT_
 
-#include "tbsys/Timer.h"
+#include "Timer.h"
+
+#include "common/base_packet_factory.h"
+#include "common/base_packet_streamer.h"
 #include "message/message_factory.h"
 
 namespace tfs
@@ -28,15 +31,18 @@ namespace tfs
   namespace nameserver
   {
     class NameServer;
-    class HeartManagement
+    class HeartManagement: public tbnet::IServerAdapter
     {
     public:
       explicit HeartManagement(NameServer& manager);
       virtual ~HeartManagement();
-      int initialize(const int32_t keepalive_thread_count, const int32_t report_block_thread_count);
+      int initialize(const int32_t keepalive_thread_count, const int32_t report_block_thread_count, const int32_t base_port);
       void wait_for_shut_down();
       void destroy();
-      int push(common::BasePacket* msg);
+
+      /** handle single packet */
+      virtual tbnet::IPacketHandler::HPRetCode handlePacket(tbnet::Connection *connection, tbnet::Packet *packet);
+
     private:
       class KeepAliveIPacketQueueHeaderHelper : public tbnet::IPacketQueueHandler
       {
@@ -45,6 +51,7 @@ namespace tfs
         virtual ~KeepAliveIPacketQueueHeaderHelper() {}
         virtual bool handlePacketQueue(tbnet::Packet* packet, void *args);
       private:
+        const char* transform_type_to_str_(const int32_t type);
         DISALLOW_COPY_AND_ASSIGN(KeepAliveIPacketQueueHeaderHelper);
         HeartManagement& manager_;
       };
@@ -60,11 +67,17 @@ namespace tfs
       };
     private:
       DISALLOW_COPY_AND_ASSIGN(HeartManagement);
-      int keepalive(tbnet::Packet* packet);
-      int report_block(tbnet::Packet* packet);
+      int apply_(tbnet::Packet* packet);
+      int renew_(tbnet::Packet* packet);
+      int giveup_(tbnet::Packet* packet);
+      int report_block_(tbnet::Packet* packet);
+    private:
       NameServer& manager_;
-      tbnet::PacketQueueThread keepalive_threads_;
-      tbnet::PacketQueueThread report_block_threads_;
+      common::BasePacketFactory* packet_factory_;
+      common::BasePacketStreamer* streamer_[common::MAX_LISTEN_PORT_NUM];
+      tbnet::Transport* transport_[common::MAX_LISTEN_PORT_NUM];
+      tbnet::PacketQueueThread keepalive_threads_[common::MAX_LISTEN_PORT_NUM];
+      tbnet::PacketQueueThread report_block_threads_[common::MAX_LISTEN_PORT_NUM];
       KeepAliveIPacketQueueHeaderHelper keepalive_queue_header_;
       ReportBlockIPacketQueueHeaderHelper report_block_queue_header_;
     };
@@ -94,7 +107,7 @@ namespace tfs
         typedef tbutil::Handle<CheckThreadHelper> CheckThreadHelperPtr;
       private:
         int keepalive_(common::BasePacket* message);
-        int keepalive_(int32_t& sleep_time, NsKeepAliveType& type, NsRuntimeGlobalInformation& ngi);
+        int keepalive_(int32_t& sleep_time, NsKeepAliveType& type, NsRuntimeGlobalInformation& ngi, const time_t now);
         void check_();
         bool check_vip_(const NsRuntimeGlobalInformation& ngi) const;
         int ns_role_establish_(NsRuntimeGlobalInformation& ngi, const time_t now);

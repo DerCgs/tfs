@@ -1,3 +1,11 @@
 AUTOMAKE_OPTIONS=foreign
 
-SUBDIRS = tbsys tbnet common message new_client dataserver nameserver adminserver tools 
+if WITH_LIFECYCLE
+SUBDIRS = tbsys tbnet common message requester clientv2 dataserver nameserver \
+	rcserver monitor kv_meta_server checkserver syncserver migrateserver kv_meta_server \
+	life_cycle_manager tools
+else
+SUBDIRS = tbsys tbnet common message requester clientv2 dataserver nameserver \
+	rcserver monitor kv_meta_server checkserver syncserver migrateserver kv_meta_server \
+	tools
+endif

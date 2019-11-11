@@ -17,7 +17,7 @@
 #define TFS_NAMESERVER_GLOBAL_FACTORY_H_
 
 #include <string>
-#include "tbsys/Timer.h"
+#include "Timer.h"
 #include "gc.h"
 #include "ns_define.h"
 #include "common/statistics.h"
@@ -34,10 +34,6 @@ namespace tfs
       static NsRuntimeGlobalInformation& get_runtime_info()
       {
         return NsRuntimeGlobalInformation::instance();
-      }
-      static NsGlobalStatisticsInfo& get_global_info()
-      {
-        return NsGlobalStatisticsInfo::instance();
       }
       static common::StatManager<std::string, std::string, common::StatEntry >& get_stat_mgr()
       {

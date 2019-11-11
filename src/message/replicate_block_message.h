@@ -31,41 +31,39 @@ namespace tfs
         int deserialize(const char* data, const int64_t data_len, int64_t& pos);
         virtual int64_t length() const;
         void dump(void) const;
-        inline void set_command(const int32_t command)
+        inline void set_status(const int32_t status)
         {
-          command_ = command;
+          status_ = status;
         }
-        inline int32_t get_command() const
+        inline int32_t get_status() const
         {
-          return command_;
+          return status_;
         }
         inline common::ReplicateBlockMoveFlag get_move_flag() const
         {
           return static_cast<common::ReplicateBlockMoveFlag>(repl_block_.is_move_);
         }
-        inline void set_expire(const int32_t expire)
+
+        inline void set_repl_block(const common::ReplBlock& repl_block)
         {
-          expire_ = expire;
+          repl_block_ = repl_block;
         }
-        inline int32_t get_expire() const
+        inline const common::ReplBlock& get_repl_block() const
         {
-          return expire_;
+          return repl_block_;
         }
-        inline void set_repl_block(const common::ReplBlock* repl_block)
+        inline const common::BlockInfoV2& get_block_info() const
         {
-          if (NULL != repl_block)
-          {
-            repl_block_ = *repl_block;
-          }
+          return source_block_info_;
         }
-        inline const common::ReplBlock* get_repl_block() const
+        inline void set_block_info(const common::BlockInfoV2& info)
         {
-          return &repl_block_;
+          source_block_info_ = info;
         }
       protected:
-        int32_t command_;
-        int32_t expire_;
+        int32_t status_;
         common::ReplBlock repl_block_;
+        common::BlockInfoV2 source_block_info_;
     };
   }
 }

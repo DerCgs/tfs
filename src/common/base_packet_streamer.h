@@ -19,7 +19,7 @@
 #include "tbnet/tbnet.h"
 namespace tfs
 {
-  namespace common 
+  namespace common
   {
     class BasePacketStreamer: public tbnet::IPacketStreamer
     {
@@ -28,6 +28,7 @@ namespace tfs
       explicit BasePacketStreamer(tbnet::IPacketFactory* factory);
       virtual ~BasePacketStreamer();
       void set_packet_factory(tbnet::IPacketFactory* factory);
+
     #ifdef TFS_GTEST
     public:
     #else

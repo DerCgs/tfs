@@ -41,7 +41,7 @@ CREATE TABLE t_cluster_rack_group (
 
 CREATE TABLE t_cluster_rack_duplicate_server (
   cluster_rack_id INT,
-  dupliate_server_addr VARCHAR(64),
+  dupliate_server_addr VARCHAR(256),
   create_time DATETIME,
   modify_time DATETIME,
   PRIMARY KEY (cluster_rack_id)
@@ -120,4 +120,10 @@ CREATE TABLE  t_cluster_cache_info (
   create_time DATETIME,
   modify_time DATETIME,
   PRIMARY KEY (cache_server_addr)
+);
+
+CREATE TABLE t_config_option (
+  op_key varchar(128) NOT NULL,
+  op_value varchar(128) default NULL,
+  PRIMARY KEY  (op_key)
 );

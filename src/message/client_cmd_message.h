@@ -22,7 +22,7 @@ namespace tfs
   namespace message
   {
     // Client Command
-    class ClientCmdMessage: public common::BasePacket 
+    class ClientCmdMessage: public common::BasePacket
     {
     public:
       ClientCmdMessage();
@@ -30,11 +30,11 @@ namespace tfs
       virtual int serialize(common::Stream& output) const ;
       virtual int deserialize(common::Stream& input);
       virtual int64_t length() const;
-      inline void set_value1(const uint64_t value)
+      inline void set_value1(const int64_t value)
       {
         info_.value1_ = value;
       }
-      inline uint64_t get_value1() const
+      inline int64_t get_value1() const
       {
         return info_.value1_;
       }
@@ -42,25 +42,33 @@ namespace tfs
       {
         info_.value2_ = value;
       }
-      inline uint64_t get_value2() const
+      inline int64_t get_value2() const
       {
         return info_.value2_;
       }
-      inline void set_value3(const uint32_t value)
+      inline void set_value3(const uint64_t value)
       {
         info_.value3_ = value;
       }
-      inline uint32_t get_value3() const
+      inline uint64_t get_value3() const
       {
         return info_.value3_;
       }
-      inline void set_value4(const uint32_t value)
+      inline void set_value4(const int64_t value)
       {
         info_.value4_ = value;
       }
-      inline uint32_t get_value4() const
+      inline int64_t get_value4() const
       {
         return info_.value4_;
+      }
+      inline void set_value5(const int64_t value)
+      {
+        info_.value5_ = value;
+      }
+      inline int64_t get_value5() const
+      {
+        return info_.value5_;
       }
       inline void set_cmd(const int32_t cmd)
       {

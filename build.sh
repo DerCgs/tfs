@@ -7,7 +7,8 @@ case "x$1" in
     xinit)
 	set -x
 	aclocal
-	libtoolize --force --copy
+	libtoolize --force
+	autoconf --force
 	automake --foreign --copy --add-missing
 	autoreconf --force
 	;;
