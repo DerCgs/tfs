@@ -19,7 +19,7 @@
 #include "tbsys/tbsys.h"
 #include "common/internal.h"
 #include "common/parameter.h"
-#include "dataserver/version.h"
+#include "common/version.h"
 #include "dataserver/blockfile_manager.h"
 
 using namespace tfs::dataserver;

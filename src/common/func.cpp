@@ -439,25 +439,46 @@ namespace tfs
       return (crc);
     }
 
-    string Func::format_size(const int64_t c)
+    string Func::format_size(const int64_t c, const char unit)
     {
       char s[128];
       double x = c;
       int level = 0;
-      while (x >= 1000.0)
+      if (unit != '\0')
       {
-        x /= 1024.0;
-        level++;
-        if (level >= 5)
-          break;
+        int32_t units_count = strlen(_sizeunits);
+        int32_t i = 0;
+        for (i = 0; i < units_count; i++)
+        {
+          x /= 1024.0;
+          if (_sizeunits[i] == unit)
+          {
+            level = i + 1;
+            break;
+          }
+        }
+        if (i > units_count)
+        {
+          fprintf(stderr, "wrong unit: %c", unit);
+        }
+      }
+      else
+      {
+        while (x >= 1000.0)
+        {
+          x /= 1024.0;
+          level++;
+          if (level >= 5)
+            break;
+        }
       }
       if (level > 2)
       {
-        snprintf(s, 128, "%.2f%c", x, _sizeunits[level - 1]);
+        snprintf(s, 128, "%.2f%c", x, (unit != '\0') ? '\0': _sizeunits[level - 1]);
       }
       else if (level > 0)
       {
-        snprintf(s, 128, "%.1f%c", x, _sizeunits[level - 1]);
+        snprintf(s, 128, "%.1f%c", x, (unit != '\0') ? '\0': _sizeunits[level - 1]);
       }
       else
       {
@@ -754,6 +775,34 @@ namespace tfs
           TBSYS_LOGGER.logMessage(TBSYS_LOG_NUM_LEVEL(log_level), "[%4.4s]   %-50.50s\n",
               addrstr, hexstr);
       }
+    }
+
+    uint32_t Func::calc_distance(const uint32_t lip, const uint32_t rip)
+    {
+      uint32_t ip1 = lip;
+      uint32_t ip2 = rip;
+      uint32_t mask = 0xff;
+      uint32_t n1 = 0;
+      uint32_t n2 = 0;
+      for (int i = 0; i < 4; i++)
+      {
+        n1 <<=  8;
+        n2 <<= 8;
+        n1 |= ip1 & mask;
+        n2 |= ip2 & mask;
+        ip1 >>= 8;
+        ip2 >>= 8;
+      }
+      uint32_t result = 0;
+      if (n1 > n2)
+      {
+        result = n1 - n2;
+      }
+      else
+      {
+        result = n2 - n1;
+      }
+      return result;
     }
 
     int32_t Func::set_bit(int32_t& data, int32_t index)

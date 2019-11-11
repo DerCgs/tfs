@@ -286,8 +286,132 @@ namespace tfs
       REQ_CALL_DS_REPORT_BLOCK_MESSAGE = 88,
       REQ_REPORT_BLOCKS_TO_NS_MESSAGE  = 89,
       RSP_REPORT_BLOCKS_TO_NS_MESSAGE  = 90,
+      REQ_EC_MARSHALLING_MESSAGE = 91,
+      REQ_EC_MARSHALLING_COMMIT_MESSAGE = 92,
+      REQ_EC_REINSTATE_MESSAGE = 93,
+      REQ_EC_REINSTATE_COMMIT_MESSAGE = 94,
+      REQ_EC_DISSOLVE_MESSAGE = 95,
+      REQ_EC_DISSOLVE_COMMIT_MESSAGE = 96,
+      READ_RAW_INDEX_MESSAGE = 97,
+      RSP_READ_RAW_INDEX_MESSAGE = 98,
+      WRITE_RAW_INDEX_MESSAGE = 99,
+      DS_COMPACT_BLOCK_MESSAGE = 100,
+      DS_REPLICATE_BLOCK_MESSAGE = 101,
+      RESP_DS_REPLICATE_BLOCK_MESSAGE = 102,
+      RESP_DS_COMPACT_BLOCK_MESSAGE = 103,
+      RSP_WRITE_DATA_MESSAGE = 104,
+      RSP_UNLINK_FILE_MESSAGE = 105,
+      REQ_RESOLVE_BLOCK_VERSION_CONFLICT_MESSAGE = 106,
+      RSP_RESOLVE_BLOCK_VERSION_CONFLICT_MESSAGE = 107,
+      REQ_GET_FAMILY_INFO_MESSAGE = 108,
+      RSP_GET_FAMILY_INFO_MESSAGE = 109,
+      DEGRADE_READ_DATA_MESSAGE = 110,
       REQ_CHECK_BLOCK_MESSAGE = 200,
       RSP_CHECK_BLOCK_MESSAGE = 201,
+      GET_BLOCK_INFO_MESSAGE_V2 = 202,
+      GET_BLOCK_INFO_RESP_MESSAGE_V2 = 203,
+      BATCH_GET_BLOCK_INFO_MESSAGE_V2 = 204,
+      BATCH_GET_BLOCK_INFO_RESP_MESSAGE_V2 = 205,
+      WRITE_FILE_MESSAGE_V2 = 206,
+      WRITE_FILE_RESP_MESSAGE_V2 = 207,
+      SLAVE_DS_RESP_MESSAGE = 208,
+      CLOSE_FILE_MESSAGE_V2 = 209,
+      UPDATE_BLOCK_INFO_MESSAGE_V2 = 210,
+      REPAIR_BLOCK_MESSAGE_V2 = 211,
+      STAT_FILE_MESSAGE_V2 = 212,
+      STAT_FILE_RESP_MESSAGE_V2 = 213,
+      READ_FILE_MESSAGE_V2 = 214,
+      READ_FILE_RESP_MESSAGE_V2 = 215,
+      UNLINK_FILE_MESSAGE_V2 = 216,
+      NEW_BLOCK_MESSAGE_V2 = 217,
+      REMOVE_BLOCK_MESSAGE_V2 = 218,
+      READ_RAWDATA_MESSAGE_V2 = 219,
+      READ_RAWDATA_RESP_MESSAGE_V2 = 220,
+      WRITE_RAWDATA_MESSAGE_V2 = 221,
+      READ_INDEX_MESSAGE_V2 = 222,
+      READ_INDEX_RESP_MESSAGE_V2 = 223,
+      WRITE_INDEX_MESSAGE_V2 = 224,
+      QUERY_EC_META_MESSAGE = 225,
+      QUERY_EC_META_RESP_MESSAGE = 226,
+      COMMIT_EC_META_MESSAGE = 227,
+      BLOCK_FILE_INFO_MESSAGE_V2 = 228,
+      REPORT_CHECK_BLOCK_MESSAGE = 229,
+      REPORT_CHECK_BLOCK_RESPONSE_MESSAGE = 230,
+      GET_BLOCK_STATISTIC_VISIT_INFO_MESSAGE = 231,
+      DS_APPLY_LEASE_MESSAGE = 232,
+      DS_APPLY_LEASE_RESPONSE_MESSAGE = 233,
+      DS_RENEW_LEASE_MESSAGE = 234,
+      DS_RENEW_LEASE_RESPONSE_MESSAGE = 235,
+      DS_GIVEUP_LEASE_MESSAGE= 236,
+      DS_GIVEUP_LEASE_RESPONSE_MESSAGE = 237,
+      DS_APPLY_BLOCK_MESSAGE = 238,
+      DS_APPLY_BLOCK_RESPONSE_MESSAGE = 239,
+      DS_APPLY_BLOCK_FOR_UPDATE_MESSAGE = 240,
+      DS_APPLY_BLOCK_FOR_UPDATE_RESPONSE_MESSAGE = 241,
+      DS_GIVEUP_BLOCK_MESSAGE = 242,
+      DS_GIVEUP_BLOCK_RESPONSE_MESSAGE = 243,
+      NS_REQ_RESOLVE_BLOCK_VERSION_CONFLICT_MESSAGE = 244,
+      NS_RSP_RESOLVE_BLOCK_VERSION_CONFLICT_MESSAGE = 245,
+      GET_ALL_BLOCKS_HEADER_MESSAGE = 246,
+      GET_ALL_BLOCKS_HEADER_RESP_MESSAGE = 247,
+      REQ_SYNC_FILE_ENTRY_MESSAGE   = 248,
+      RSP_SYNC_FILE_ENTRY_MESSAGE   = 249,
+      REQ_MIGRATE_DS_HEARTBEAT_MESSAGE  = 250,
+      RSP_MIGRATE_DS_HEARTBEAT_MESSAGE  = 251,
+      CLIENT_NS_KEEPALIVE_MESSAGE = 252,
+      CLIENT_NS_KEEPALIVE_RESPONSE_MESSAGE = 253,
+      NS_CLEAR_FAMILYINFO_MESSAGE = 254,
+
+      REQ_KVMETA_GET_OBJECT_MESSAGE = 300,
+      RSP_KVMETA_GET_OBJECT_MESSAGE = 301,
+      REQ_KVMETA_PUT_OBJECT_MESSAGE = 302,
+      REQ_KVMETA_DEL_OBJECT_MESSAGE = 303,
+      RSP_KVMETA_DEL_OBJECT_MESSAGE = 304,
+      REQ_KVMETA_HEAD_OBJECT_MESSAGE = 305,
+      RSP_KVMETA_HEAD_OBJECT_MESSAGE = 306,
+
+      REQ_KVMETA_PUT_BUCKET_MESSAGE = 307,
+      REQ_KVMETA_GET_BUCKET_MESSAGE = 308,
+      RSP_KVMETA_GET_BUCKET_MESSAGE = 309,
+      REQ_KVMETA_DEL_BUCKET_MESSAGE = 310,
+      REQ_KVMETA_HEAD_BUCKET_MESSAGE = 311,
+      RSP_KVMETA_HEAD_BUCKET_MESSAGE = 312,
+
+      REQ_KVMETA_GET_SERVICE_MESSAGE = 313,
+      RSP_KVMETA_GET_SERVICE_MESSAGE = 314,
+
+      REQ_KVMETA_PUT_BUCKET_ACL_MESSAGE = 319,
+      REQ_KVMETA_GET_BUCKET_ACL_MESSAGE = 320,
+      RSP_KVMETA_GET_BUCKET_ACL_MESSAGE = 321,
+
+      REQ_KV_RT_MS_KEEPALIVE_MESSAGE = 350,
+      RSP_KV_RT_MS_KEEPALIVE_MESSAGE = 351,
+      REQ_KV_RT_GET_TABLE_MESSAGE = 352,
+      RSP_KV_RT_GET_TABLE_MESSAGE = 353,
+
+      /* 360:MULTIPART */
+      /* 370:AUTHORIZE */
+      REQ_EXPIRE_CLEAN_TASK_MESSAGE = 380,
+      REQ_RT_FINISH_TASK_MESSAGE = 381,
+      REQ_KVMETA_SET_LIFE_CYCLE_MESSAGE = 382,
+      REQ_KVMETA_GET_LIFE_CYCLE_MESSAGE = 383,
+      RSP_KVMETA_GET_LIFE_CYCLE_MESSAGE = 384,
+      REQ_KVMETA_RM_LIFE_CYCLE_MESSAGE = 385,
+
+      REQ_RT_ES_KEEPALIVE_MESSAGE = 390,
+      RSP_RT_ES_KEEPALIVE_MESSAGE = 391,
+      REQ_QUERY_TASK_MESSAGE = 392,
+      RSP_QUERY_TASK_MESSAGE = 393,
+
+      REQ_RC_REQ_STAT_MESSAGE = 394,
+      RSP_RC_REQ_STAT_MESSAGE = 395,
+
+      REQ_RC_KEEPALIVE_BY_MONITOR_KEY_CLIENT = 396,
+      RSP_RC_KEEPALIVE_BY_MONITOR_KEY_CLIENT = 397,
+
+      REQ_KVMETA_PUT_OBJECT_USER_METADATA_MESSAGE = 400,
+      REQ_KVMETA_DEL_OBJECT_USER_METADATA_MESSAGE = 403,
+
       LOCAL_PACKET = 500
     };
 
@@ -319,16 +443,17 @@ namespace tfs
       BasePacket();
       virtual ~BasePacket();
       virtual bool copy(BasePacket* src, const int32_t version, const bool deserialize);
-      bool encode(tbnet::DataBuffer* output);
-      bool decode(tbnet::DataBuffer* input, tbnet::PacketHeader* header);
+      virtual bool encode(tbnet::DataBuffer* output);
+      virtual bool decode(tbnet::DataBuffer* input, tbnet::PacketHeader* header);
 
       virtual int serialize(Stream& output) const = 0;
       virtual int deserialize(Stream& input) = 0;
+      virtual int deserialize(const char* data, const int64_t data_len, int64_t& pos);
       virtual int64_t length() const = 0;
       int64_t get_data_length() const { return stream_.get_data_length();}
       virtual int reply(BasePacket* packet);
       int reply_error_packet(const int32_t level, const char* file, const int32_t line,
-               const char* function, const int32_t error_code, const char* fmt, ...);
+               const char* function, pthread_t thid, const int32_t error_code, const char* fmt, ...);
       virtual void dump() const {}
 
       inline bool is_enable_dump() const { return dump_flag_;}
@@ -348,6 +473,7 @@ namespace tfs
       inline uint32_t get_crc() const { return crc_;}
       inline void set_id(const uint64_t id) { id_ = id;}
       inline uint64_t get_id() const { return id_;}
+      //inline Stream& get_stream() {return stream_;}
 
       static bool parse_special_ds(std::vector<uint64_t>& value, int32_t& version, uint32_t& lease);
 
