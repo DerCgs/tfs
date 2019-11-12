@@ -15,8 +15,8 @@
 */
 #ifndef TFS_COMMON_MYSQL_CLUSTER_DATABASE_POOL_H_
 #define TFS_COMMON_MYSQL_CLUSTER_DATABASE_POOL_H_
-#include <tbsys.h>
-#include <Mutex.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
 #include "common/internal.h"
 namespace tfs
 {

@@ -232,10 +232,12 @@ namespace tfs
         pos = pos + 4;
       }
 
+#ifdef WITH_TAIR_META
       if (TFS_SUCCESS == ret)
       {
         value->set_data(data, pos);
       }
+#endif
       return ret;
     }
 

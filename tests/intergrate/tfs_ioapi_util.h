@@ -14,7 +14,7 @@
  */
 #ifndef TFS_TEST_IOAPI_UTIL_H_
 #define TFS_TEST_IOAPI_UTIL_H_
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <gtest/gtest.h>
 #include "message/message_factory.h"
 #include "common/define.h"

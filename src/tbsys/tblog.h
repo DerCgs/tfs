@@ -35,8 +35,8 @@
 #define TBSYS_LOG_LEVEL_WARN  1
 #define TBSYS_LOG_LEVEL_INFO  2
 #define TBSYS_LOG_LEVEL_DEBUG 3
-#define TBSYS_LOG_LEVEL(level) TBSYS_LOG_LEVEL_##level, __FILE__, __LINE__, __FUNCTION__
-#define TBSYS_LOG_NUM_LEVEL(level) level, __FILE__, __LINE__, __FUNCTION__
+#define TBSYS_LOG_LEVEL(level) TBSYS_LOG_LEVEL_##level, __FILE__, __LINE__, __FUNCTION__, pthread_self()
+#define TBSYS_LOG_NUM_LEVEL(level) level, __FILE__, __LINE__, __FUNCTION__, pthread_self()
 #define TBSYS_LOGGER tbsys::CLogger::_logger
 #define TBSYS_PRINT(level, ...) TBSYS_LOGGER.logMessage(TBSYS_LOG_LEVEL(level), __VA_ARGS__)
 #define TBSYS_LOG_BASE(level, ...) (TBSYS_LOG_LEVEL_##level>TBSYS_LOGGER._level) ? (void)0 : TBSYS_PRINT(level, __VA_ARGS__) 
@@ -74,7 +74,7 @@ public:
      * @param fmt
      * @param ...
      */
-    void logMessage(int level, const char *file, int line, const char *function, const char *fmt, ...);
+    void logMessage(int level, const char *file, int line, const char *function, pthread_t thid, const char *fmt, ...);
     /** 
      * @brief 设置日志的级别
      * 

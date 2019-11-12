@@ -40,9 +40,6 @@ namespace tfs
     {
       KvKey();
 
-      static const char DELIMITER;
-      static const char PREFIX;
-
       const char* key_; //no malloc no free
       int32_t key_size_;
       int32_t key_type_;
@@ -54,6 +51,8 @@ namespace tfs
         KEY_TYPE_NAME_EXPTIME = 4,
         KEY_TYPE_EXPTIME_APPKEY = 5,
         KEY_TYPE_ES_STAT = 6,
+        DELIMITER = 7,
+        PREFIX = 8
       };
     };
 

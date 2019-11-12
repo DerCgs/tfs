@@ -15,8 +15,8 @@
  */
 #include <set>
 #include <gtest/gtest.h>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include "common/error_msg.h"
 #include "lru.h"
 

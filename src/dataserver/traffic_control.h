@@ -17,7 +17,7 @@
 #ifndef TFS_DATASERVER_TRAFFICE_CONTROL_H_
 #define TFS_DATASERVER_TRAFFICE_CONTROL_H_
 
-#include <Timer.h>
+#include "tbsys/Timer.h"
 #include "common/internal.h"
 #include "common/error_msg.h"
 #include "common/array_helper.h"

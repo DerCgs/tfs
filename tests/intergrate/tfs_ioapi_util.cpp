@@ -16,7 +16,7 @@
 #include "common/define.h"
 #include "tfs_ioapi_util.h"
 #include <stdlib.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <iostream>
 #include <vector>
 

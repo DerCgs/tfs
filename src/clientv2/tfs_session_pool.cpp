@@ -13,7 +13,7 @@
  *      - modify 2013-07-12
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/func.h"
 #include "tfs_session_pool.h"
 

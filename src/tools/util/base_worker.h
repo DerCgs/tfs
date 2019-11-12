@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <vector>
 #include <algorithm>
-#include <TbThread.h>
+#include "tbsys/TbThread.h"
 #include "common/internal.h"
 
 namespace tfs

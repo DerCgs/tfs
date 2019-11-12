@@ -14,8 +14,8 @@
 #ifndef TFS_CHECKSERVER_DEFAULTSERVERHELPER_H
 #define TFS_CHECKSERVER_DEFAULTSERVERHELPER_H
 
-#include "tbnet.h"
-#include <Handle.h>
+#include "tbnet/tbnet.h"
+#include "tbsys/Handle.h"
 #include "common/internal.h"
 #include "common/new_client.h"
 #include "common/client_manager.h"

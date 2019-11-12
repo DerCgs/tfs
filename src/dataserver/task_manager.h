@@ -17,8 +17,8 @@
 #ifndef TFS_DATASERVER_TASKMANAGER_H_
 #define TFS_DATASERVER_TASKMANAGER_H_
 
-#include <Mutex.h>
-#include <Monitor.h>
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
 #include "ds_define.h"
 #include "task.h"
 #include "common/base_packet.h"

@@ -81,7 +81,7 @@ void CLogger::setFileName(const char *filename, bool flag) {
     }
 }
 
-void CLogger::logMessage(int level,const char *file, int line, const char *function,const char *fmt, ...) {
+void CLogger::logMessage(int level,const char *file, int line, const char *function, pthread_t thid, const char *fmt, ...) {
     if (level>_level) return;
     
     if (_check && _name) {

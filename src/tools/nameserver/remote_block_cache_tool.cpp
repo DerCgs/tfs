@@ -21,7 +21,7 @@
 #include <string>
 #include <map>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 
 #include "common/internal.h"
 #include "common/config_item.h"

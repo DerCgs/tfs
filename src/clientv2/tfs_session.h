@@ -16,7 +16,7 @@
 #ifndef TFS_CLIENTV2_TFSSESSION_H_
 #define TFS_CLIENTV2_TFSSESSION_H_
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 
 #include "common/internal.h"
 #include "common/statistics.h"

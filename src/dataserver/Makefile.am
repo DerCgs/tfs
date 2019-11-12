@@ -7,7 +7,7 @@ LDADD=$(top_builddir)/src/clientv2/.libs/libtfsclientv2.a\
       $(top_builddir)/src/message/libtfsmessage.a\
       $(top_builddir)/src/common/libtfscommon.a\
       $(top_builddir)/src/tbsys/libtbsys.a\
-      $(top_builddir)/src/tbnet/libtbnet.a\
+      $(top_builddir)/src/tbnet/libtbnet.a
 
 noinst_LIBRARIES = libdataserver.a
 

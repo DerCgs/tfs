@@ -17,8 +17,7 @@
 #define TFS_NAMESERVER_GLOBAL_FACTORY_H_
 
 #include <string>
-#include "Timer.h"
-#include "gc.h"
+#include "tbsys/Timer.h"
 #include "ns_define.h"
 #include "common/statistics.h"
 

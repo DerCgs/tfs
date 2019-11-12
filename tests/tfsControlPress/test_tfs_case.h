@@ -17,8 +17,8 @@
 #ifndef TEST_TFS_CASE_H
 #define TEST_TFS_CASE_H
 
-#include "tbnet.h"
-#include "tbsys.h"
+#include "tbnet/tbnet.h"
+#include "tbsys/tbsys.h"
 #include "tfs_file.h"
 #include "dataserver_define.h"
 #include "test_common_utils.h"

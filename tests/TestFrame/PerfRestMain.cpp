@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "Parameter.h"
 #include "RestClient.h"
 #include "thread.h"

@@ -25,8 +25,6 @@ namespace tfs
       :key_(NULL), key_size_(0), key_type_(0)
     {
     }
-    const char KvKey::DELIMITER = 7;
-    const char KvKey::PREFIX = 8;
 
     KvValue::KvValue()
     {

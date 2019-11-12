@@ -14,7 +14,7 @@
  *
  */
 #include <gtest/gtest.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <set>
 #include "strategy.h"
 

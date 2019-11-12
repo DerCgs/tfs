@@ -13,8 +13,8 @@
  *      - initial release
  */
 
-#include <Service.h>
-#include <Memory.hpp>
+#include "tbsys/Service.h"
+#include "tbsys/Memory.hpp"
 #include <iterator>
 #include "common/error_msg.h"
 #include "common/config_item.h"

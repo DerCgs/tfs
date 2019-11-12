@@ -17,7 +17,7 @@
 #define TFS_NAMEMETASERVER_CACHE_INFO_H_
 #include <string.h>
 #include <algorithm>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/define.h"
 #include "common/meta_server_define.h"
 #include "mem_helper.h"

@@ -2825,7 +2825,7 @@ namespace tfs
         vsnprintf(msgstr, 256, NULL == format ? "" : format, ap);
         va_end(ap);
         std::stringstream str;
-        TBSYS_LOGGER.logMessage(level, file, line, function, thid,
+        TBSYS_LOGGER.logMessage(level, file, line, function, pthread_self(),
           "%s, app_id: %"PRI64_PREFIX"d, block_id: %"PRI64_PREFIX"u, file_id: %"PRI64_PREFIX"u, dest_ns_addr: %s, source_ds addr: %s, source ns addr: %s type: %d\
           last_sync_time: %d, sync_fail_count: %u",
             msgstr, app_id_, block_id_, file_id_, tbsys::CNetUtil::addrToString(dest_ns_addr_).c_str(),

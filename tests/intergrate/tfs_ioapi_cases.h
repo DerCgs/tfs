@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <gtest/gtest.h>
 #include "common/define.h"
 #include "client/tfs_file.h"

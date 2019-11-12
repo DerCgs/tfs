@@ -16,10 +16,17 @@
 #ifndef TFS_NAMESERVER_DATABASE_HELPER_H_
 #define TFS_NAMESERVER_DATABASE_HELPER_H_
 
-#include <Timer.h>
-#include <Mutex.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Mutex.h"
 #include "ns_define.h"
-#include "tair_client_api.hpp"
+
+#ifdef WITH_TAIR_META
+  #include "tair_client_api.hpp"
+#else
+  #define TAIR_RETURN_SUCCESS TFS_SUCCESS
+  #define TAIR_RETURN_DATA_NOT_EXIST TFS_ERROR
+  #define TAIR_HAS_MORE_DATA 3
+#endif
 
 #ifdef TFS_GTEST
 #include <gtest/gtest.h>
@@ -59,7 +66,9 @@ namespace tfs
     private:
       DISALLOW_COPY_AND_ASSIGN(TairHelper);
       tbutil::Mutex mutex_;
+#ifdef WITH_TAIR_META
       tair::tair_client_api tair_client_;
+#endif
       std::string key_prefix_;
       std::string master_ipaddr_;
       std::string slave_ipaddr_;

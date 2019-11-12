@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <vector>
 #include <algorithm>
-#include <TbThread.h>
+#include "tbsys/TbThread.h"
 #include "common/directory_op.h"
 #include "common/internal.h"
 #include "common/error_msg.h"

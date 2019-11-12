@@ -18,9 +18,9 @@
 #define TFS_NAMESERVER_TASK_H_
 
 #include <stdint.h>
-#include "Shared.h"
-#include "Handle.h"
-#include "Timer.h"
+#include "tbsys/Shared.h"
+#include "tbsys/Handle.h"
+#include "tbsys/Timer.h"
 #include "ns_define.h"
 #include "common/lock.h"
 #include "common/internal.h"

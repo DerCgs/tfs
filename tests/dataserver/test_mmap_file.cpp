@@ -15,7 +15,7 @@
  */
 #include <gtest/gtest.h>
 #include "mmap_file.h"
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 
 using namespace tfs::common;
 const char* MMAP_FILE_NAME = "file_mmap.test";

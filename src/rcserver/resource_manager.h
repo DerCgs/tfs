@@ -19,8 +19,8 @@
 #include <map>
 #include <set>
 #include <string>
-#include <tbsys.h>
-#include <Timer.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Timer.h"
 #include "common/internal.h"
 #include "i_resource_manager.h"
 

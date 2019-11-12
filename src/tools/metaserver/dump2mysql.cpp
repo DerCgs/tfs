@@ -18,7 +18,7 @@
 #include <string>
 #include <string.h>
 #include <signal.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include <pthread.h>
 #include <sys/time.h>
 

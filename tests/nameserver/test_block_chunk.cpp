@@ -15,7 +15,7 @@
  */
 #include <gtest/gtest.h>
 #include "block_chunk.h"
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "block_collect.h"
 #include "server_collect.h"
 

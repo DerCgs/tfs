@@ -13,8 +13,8 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
-#include <tbnet.h>
+#include "tbsys/tbsys.h"
+#include "tbnet/tbnet.h"
 
 #include "http_packet_streamer.h"
 #include "http_message_factory.h"

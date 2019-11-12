@@ -14,9 +14,9 @@
  *
  */
 #include <gtest/gtest.h>
-#include <Handle.h>
+#include "tbsys/Handle.h"
 #include <Shared.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "nameserver.h"
 #include "global_factory.h"
 #include "common/error_msg.h"

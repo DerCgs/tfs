@@ -17,8 +17,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "tbsys.h"
-#include "TbThread.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/TbThread.h"
 #include "common/internal.h"
 #include "common/base_service.h"
 #include "message/message_factory.h"

@@ -16,7 +16,7 @@
 #ifndef TFS_NAMEMETASERVER_MEM_HELPER_H_
 #define TFS_NAMEMETASERVER_MEM_HELPER_H_
 #include <stdint.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/define.h"
 
 namespace tfs

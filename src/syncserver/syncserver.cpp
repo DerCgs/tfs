@@ -13,7 +13,7 @@
  *      - initial release
  */
 #include "syncserver.h"
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/client_manager.h"
 #include "common/func.h"
 #include "common/config_item.h"

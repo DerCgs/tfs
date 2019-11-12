@@ -14,7 +14,7 @@
 #ifndef TFS_DATASERVER_WRITABLE_BLOCK_MANAGER_H_
 #define TFS_DATASERVER_WRITABLE_BLOCK_MANAGER_H_
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 #include "common/atomic.h"
 #include "common/internal.h"
 #include "common/lock.h"

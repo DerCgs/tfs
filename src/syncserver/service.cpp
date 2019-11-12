@@ -13,8 +13,8 @@
  *      - initial release
  */
 #include <exception>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include "syncserver.h"
 
 int main(int argc, char* argv[])

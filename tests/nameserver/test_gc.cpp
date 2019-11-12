@@ -14,8 +14,8 @@
  *
  */
 #include <gtest/gtest.h>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include <time.h>
 #include "global_factory.h"
 #include "block_collect.h"

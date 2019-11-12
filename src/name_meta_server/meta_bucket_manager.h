@@ -14,12 +14,12 @@
 #ifndef TFS_NAME_META_BUCKET_MANAGER_H_
 #define TFS_NAME_META_BUCKET_MANAGER_H_
 
-#include <tbsys.h>
-#include <Monitor.h>
-#include <Mutex.h>
-#include <Timer.h>
-#include <Shared.h>
-#include <Handle.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Monitor.h"
+#include "tbsys/Mutex.h"
+#include "tbsys/Timer.h"
+#include "tbsys/Shared.h"
+#include "tbsys/Handle.h"
 #include "common/rts_define.h"
 #include "common/error_msg.h"
 

@@ -24,7 +24,7 @@
 #include "tfs_vector.h"
 #include "lock.h"
 #include "internal.h"
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 
 namespace tfs
 {

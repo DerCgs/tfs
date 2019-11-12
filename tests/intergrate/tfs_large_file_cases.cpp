@@ -18,7 +18,7 @@
 #include "tfs_large_file_cases.h"
 #include "tfs_ioapi_util.h"
 #include <stdlib.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <iostream>
 #include <vector>
 

@@ -17,9 +17,9 @@
 #define TFS_CLIENTV2_TFSSESSION_POOL_H_
 
 #include <map>
-#include <tbsys.h>
-#include <Mutex.h>
-#include "Timer.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
+#include "tbsys/Timer.h"
 #include "tfs_session.h"
 
 namespace tfs

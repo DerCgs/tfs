@@ -15,7 +15,7 @@
  */
 #include <stdlib.h>
 #include <libgen.h>
-#include <TbThread.h>
+#include "tbsys/TbThread.h"
 #include "common/internal.h"
 #include "common/directory_op.h"
 #include "common/new_client.h"

@@ -16,7 +16,7 @@
 #ifndef TFS_DATASERVER_GC_H_
 #define TFS_DATASERVER_GC_H_
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 #include "ds_define.h"
 
 #ifdef TFS_GTEST

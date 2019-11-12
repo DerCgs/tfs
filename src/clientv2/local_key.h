@@ -16,8 +16,8 @@
 #ifndef TFS_CLIENT_LOCALKEY_H_
 #define TFS_CLIENT_LOCALKEY_H_
 
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include "common/func.h"
 #include "common/file_op.h"
 #include "common/internal.h"

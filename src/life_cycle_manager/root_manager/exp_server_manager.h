@@ -16,10 +16,10 @@
 #ifndef TFS_LIFECYCLE_ROOTMANAGER_EXPROOTSERVER_EXP_SERVER_MANAGER_H_
 #define TFS_LIFECYCLE_ROOTMANAGER_EXPROOTSERVER_EXP_SERVER_MANAGER_H_
 
-#include <Time.h>
-#include <Mutex.h>
-#include <Monitor.h>
-#include <TbThread.h>
+#include "tbsys/Time.h"
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
+#include "tbsys/TbThread.h"
 
 #ifdef TFS_GTEST
 #include <gtest/gtest.h>

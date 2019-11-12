@@ -21,7 +21,7 @@
 #include "galois.h"
 #include "jerasure.h"
 #include "erasure_code.h"
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "common/error_msg.h"
 
 using namespace std;

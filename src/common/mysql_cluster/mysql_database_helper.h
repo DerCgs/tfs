@@ -15,9 +15,9 @@
 */
 #ifndef TFS_COMMON_MYSQL_CLUSTER_MYSQL_DATABASE_HELPER_H_
 #define TFS_COMMON_MYSQL_CLUSTER_MYSQL_DATABASE_HELPER_H_
-#include <mysql.h>
-#include <tbsys.h>
-#include <Mutex.h>
+#include <mysql/mysql.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
 #include <vector>
 
 #include "common/kvengine_helper.h"

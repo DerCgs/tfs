@@ -21,7 +21,7 @@
 #include <set>
 #include <iostream>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "common/internal.h"
 
 

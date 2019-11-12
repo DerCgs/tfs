@@ -15,8 +15,8 @@
  */
 #ifndef TFS_RCSERVER_RESOURCE_H_
 #define TFS_RCSERVER_RESOURCE_H_
-#include <tbsys.h>
-#include <Shared.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Shared.h"
 namespace tfs
 {
   namespace rcserver

@@ -17,7 +17,7 @@
 #define TFS_CLIENT_KV_META_CLIENT_IMPL_H_
 
 #include <stdio.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/kv_meta_define.h"
 #include "common/kv_rts_define.h"
 #include "tfs_meta_manager.h"

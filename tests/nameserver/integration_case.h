@@ -25,9 +25,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <tbsys.h>
-#include <tbnet.h>
-#include <Timer.h>
+#include "tbsys/tbsys.h"
+#include "tbnet/tbnet.h"
+#include "tbsys/Timer.h"
 #include <ThreadPool.h>
 #include <StaticMutex.h>
 

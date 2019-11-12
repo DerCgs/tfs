@@ -19,7 +19,9 @@
 
 #include "kv_meta_define.h"
 #include "kvengine_helper.h"
+#ifdef WITH_TAIR_META
 #include "tair_client_api.hpp"
+#endif
 
 namespace tfs
 {
@@ -33,10 +35,14 @@ namespace tfs
       virtual int32_t get_size() const;
       virtual const char* get_data() const;
       virtual void free();
+#ifdef WITH_TAIR_META
       tair::data_entry* get_mutable_tair_value();
       void set_tair_value(tair::data_entry* tair_value);
+#endif
     private:
+#ifdef WITH_TAIR_META
       tair::data_entry* tair_value_;
+#endif
     };
 
 
@@ -56,9 +62,12 @@ namespace tfs
 
     public:
       //we split object key like bucketname\objecetname to prefix_key = bucketname, seconde_key = object_name
+#ifdef WITH_TAIR_META
       static int split_key_for_tair(const KvKey& key, tair::data_entry* prefix_key, tair::data_entry* second_key);
+#endif
 
     private:
+#ifdef WITH_TAIR_META
       int prefix_put_to_tair(const int area, const tair::data_entry &pkey,
           const tair::data_entry &skey, const tair::data_entry &value, const int version);
       int prefix_get_from_tair(const int area, const tair::data_entry &pkey,
@@ -68,6 +77,7 @@ namespace tfs
                                    const tair::tair_dataentry_set &skey_set, tair::key_code_map_t &key_code_map);
       int prefix_scan_from_tair(const int area, const tair::data_entry &pkey, const tair::data_entry &start_key, const tair::data_entry &end_key,
                                 int offset, int limit, std::vector<tair::data_entry *> &values, short type);
+#endif
 
       int prefix_put_key(const int area, const KvKey& key, const KvMemValue &value, const int64_t version);
       int none_range_put_key(const int area, const KvKey& key, const KvMemValue &value, const int64_t version);
@@ -87,7 +97,9 @@ namespace tfs
 
     private:
       DISALLOW_COPY_AND_ASSIGN(TairEngineHelper);
+#ifdef WITH_TAIR_META
       tair::tair_client_api* tair_client_;
+#endif
       std::string master_addr_;
       std::string slave_addr_;
       std::string group_name_;

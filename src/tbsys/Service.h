@@ -15,7 +15,7 @@
 
 #ifndef TBSYS_SERVICE_H
 #define TBSYS_SERVICE_H
-#include<string>
+#include <string>
 #include "Mutex.h"
 #include "Monitor.h"
 namespace tbutil

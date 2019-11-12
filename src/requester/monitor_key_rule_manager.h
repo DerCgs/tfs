@@ -17,8 +17,8 @@
 #ifndef TFS_REQUESTER_MONITOR_KEY_RULE_MANAGER_H_
 #define TFS_REQUESTER_MONITOR_KEY_RULE_MANAGER_H_
 
-#include <tbsys.h>
-#include <TbThread.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/TbThread.h"
 
 #include "common/lock.h"
 #include "common/internal.h"

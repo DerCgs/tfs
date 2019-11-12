@@ -16,7 +16,7 @@
 
 #include "tairengine_helper.h"
 
-#include "Memory.hpp"
+#include "tbsys/Memory.hpp"
 #include "parameter.h"
 #include "error_msg.h"
 #include "serialization.h"

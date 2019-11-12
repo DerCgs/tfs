@@ -14,10 +14,10 @@
  *
  */
 
-#include <Time.h>
-#include <Mutex.h>
-#include <Monitor.h>
-#include <TbThread.h>
+#include "tbsys/Time.h"
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
+#include "tbsys/TbThread.h"
 
 #ifdef TFS_GTEST
 #include <gtest/gtest.h>
