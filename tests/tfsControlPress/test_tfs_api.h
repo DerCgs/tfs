@@ -16,8 +16,8 @@
 #ifndef TEST_TFS_API_H
 #define TEST_TFS_API_H
 
-#include "tbsys.h"
-#include "tbnet.h"
+#include "tbsys/tbsys.h"
+#include "tbnet/tbnet.h"
 
 class TestTfsAPI : public tbsys::CDefaultRunnable {
   public:

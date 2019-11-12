@@ -16,8 +16,8 @@
 #ifndef TFS_TEST_RCSERVER_TEST_DATABASE_HELPER_H_
 #define TFS_TEST_RCSERVER_TEST_DATABASE_HELPER_H_
 #include <time.h>
-#include <tbsys.h>
-#include <Mutex.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
 #include "database_helper.h"
 #include "resource_manager.h"
 #include "common/define.h"

@@ -15,7 +15,7 @@
  */
 #include "md5.h"
 
-#include "Memory.hpp"
+#include "tbsys/Memory.hpp"
 
 #include "common/serialization.h"
 #include "common/error_msg.h"

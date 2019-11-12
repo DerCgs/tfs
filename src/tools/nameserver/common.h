@@ -17,8 +17,8 @@
 #define TFS_TOOLS_COMMON_H_
 
 #include <vector>
-#include "tbnet.h"
-#include "Handle.h"
+#include "tbnet/tbnet.h"
+#include "tbsys/Handle.h"
 #include "common/client_manager.h"
 #include "message/message_factory.h"
 #include "common/config_item.h"

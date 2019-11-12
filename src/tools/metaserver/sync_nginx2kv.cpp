@@ -18,7 +18,7 @@
 #include <string>
 #include <string.h>
 #include <signal.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 
 #include "common/version.h"
 #include "common/parameter.h"

@@ -15,8 +15,8 @@
  *      -modify interface-2012.03.15
  *
  */
-#include "tbsys.h"
-#include "tbnetutil.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/tbnetutil.h"
 #include "global_factory.h"
 #include "common/status_message.h"
 #include "common/base_service.h"

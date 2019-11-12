@@ -15,7 +15,7 @@
  */
 
 #include "test_kvengine.h"
-#include "Memory.hpp"
+#include "tbsys/Memory.hpp"
 #include "kv_meta_define.h"
 #include "common/parameter.h"
 #include "common/error_msg.h"

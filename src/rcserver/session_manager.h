@@ -19,9 +19,9 @@
 #include <time.h>
 #include <map>
 #include <string>
-#include <Timer.h>
-#include <Shared.h>
-#include <Handle.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Shared.h"
+#include "tbsys/Handle.h"
 #include "common/internal.h"
 #include "common/lock.h"
 #include "i_resource_manager.h"

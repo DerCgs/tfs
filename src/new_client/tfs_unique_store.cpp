@@ -13,7 +13,7 @@
  *      - initial release
 
  */
-#include "Memory.hpp"
+#include "tbsys/Memory.hpp"
 
 #include "common/error_msg.h"
 #include "fsname.h"

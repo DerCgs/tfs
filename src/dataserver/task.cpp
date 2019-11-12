@@ -14,7 +14,7 @@
  *
  */
 
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/status_message.h"
 #include "message/replicate_block_message.h"
 #include "message/compact_block_message.h"

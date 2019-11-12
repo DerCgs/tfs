@@ -38,7 +38,8 @@ namespace tfs
   namespace nameserver
   {
     OpLogSyncManager::OpLogSyncManager(LayoutManager& mm) :
-      manager_(mm), oplog_(NULL), file_queue_(NULL), file_queue_thread_(NULL),dbhelper_(NULL)
+      manager_(mm), oplog_(NULL), file_queue_(NULL), file_queue_thread_(NULL)
+	,dbhelper_(NULL)
     {
       for (int32_t index = 0; index < MAX_LOAD_FAMILY_INFO_THREAD_NUM; ++index)
       {
@@ -123,6 +124,8 @@ namespace tfs
         work_thread_.setThreadParameter(queue_thread_num , this, NULL);
         work_thread_.start();
       }
+
+#ifdef WITH_TAIR_META
       if (TFS_SUCCESS == ret)
       {
         std::string tair_info = TBSYS_CONFIG.getString(CONF_SN_NAMESERVER, CONF_TAIR_ADDR, "");
@@ -146,6 +149,7 @@ namespace tfs
           }
         }
       }
+#endif
       return ret;
     }
 

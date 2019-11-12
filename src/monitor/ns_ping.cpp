@@ -14,7 +14,7 @@
  *
  */
 #include <stdio.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 
 #include "common/new_client.h"
 #include "common/client_manager.h"

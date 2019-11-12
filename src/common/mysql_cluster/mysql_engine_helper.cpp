@@ -16,7 +16,7 @@
 
 #include "mysql_engine_helper.h"
 
-#include "Memory.hpp"
+#include "tbsys/Memory.hpp"
 #include "common/parameter.h"
 #include "common/error_msg.h"
 #include "common/serialization.h"

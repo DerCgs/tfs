@@ -14,7 +14,7 @@
  *
  */
 
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "tfs_cluster_manager.h"
 
 #include "tfs_client_impl_v2.h"

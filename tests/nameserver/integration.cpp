@@ -23,8 +23,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 
 #include "common/config.h"
 #include "common/config_item.h"

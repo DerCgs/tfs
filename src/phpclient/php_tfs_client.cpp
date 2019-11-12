@@ -17,7 +17,7 @@ extern "C"
 #include "php_tfs_client.h"
 #include "fsname.h"
 #include "tfs_rc_client_api.h"
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <tbnet.h>
 #include <vector>
 

@@ -17,7 +17,7 @@
 #define TEST_TFS_STATIS_H
 
 #include <vector>
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 
 class TestTfsStatis {
   public:

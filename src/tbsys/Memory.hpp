@@ -17,6 +17,7 @@
 #define TBSYS_MEMORY_HPP_
 #include <new>
 #include <stddef.h>
+#include <stdlib.h>
 
 namespace tbsys
 {
@@ -307,7 +308,7 @@ template <typename Type> inline void gFree(Type *&rp)
 {
     if (rp != NULL)
     {
-        free(rp);
+	free(rp);
         rp = NULL;
     }
 }

@@ -95,10 +95,6 @@ if ! test -d "${TAIR_ROOT}/include" -a -d "${TBLIB_ROOT}/lib"; then
   AC_MSG_ERROR([TAIR_ROOT is not work! expect TAIR_ROOT/include and TAIR_ROOT/lib directory])
   exit 1;
 fi
-TAIR_STORE_CPPFLAGS="-DWITH_UNIQUE_STORE -I${TAIR_ROOT}/include"
-TAIR_STORE_LDFLAGS="${TAIR_ROOT}/lib/libtairclientapi.a  -L/usr/lib64/boost1.46.1 -lboost_thread-mt -lz -lsnappy"
-AC_SUBST([TAIR_STORE_CPPFLAGS])
-AC_SUBST([TAIR_STORE_LDFLAGS])
 
 AC_ARG_ENABLE([uniquestore],
            AS_HELP_STRING([--enable-uniquestore],
@@ -148,10 +144,14 @@ if test "${enable_kvmeta}" = "yes"; then
         fi
         TAIR_META_CPPFLAGS="-DWITH_TAIR_META -I${TAIR_ROOT}/include"
         TAIR_META_LDFLAGS="${TAIR_ROOT}/lib/libtairclientapi.a -lboost_thread-mt -lz -lsnappy"
+        TAIR_STORE_CPPFLAGS="-DWITH_UNIQUE_STORE -I${TAIR_ROOT}/include"
+        TAIR_STORE_LDFLAGS="${TAIR_ROOT}/lib/libtairclientapi.a  -L/usr/lib64/boost1.46.1 -lboost_thread-mt -lz -lsnappy"
 fi
 AM_CONDITIONAL([WITH_KV_META],[test x$enable_kvmeta = xyes])
 AC_SUBST([TAIR_META_CPPFLAGS])
 AC_SUBST([TAIR_META_LDFLAGS])
+AC_SUBST([TAIR_STORE_CPPFLAGS])
+AC_SUBST([TAIR_STORE_LDFLAGS])
 
 AC_CACHE_CHECK(if fallocate is implemented, ac_cv_func_fallocate,
   AC_TRY_RUN([
@@ -245,15 +245,10 @@ AC_CONFIG_FILES([Makefile
                  scripts/Makefile
                  scripts/ha/Makefile
                  src/Makefile
-<<<<<<< HEAD
 		 src/tbsys/Makefile
 		 src/tbnet/Makefile
-                 src/adminserver/Makefile
-                 src/new_client/Makefile
-=======
                  src/clientv2/Makefile
                  src/requester/Makefile
->>>>>>> a1b625f841322f642c0a3add13527eceb8cc890b
                  src/common/Makefile
                  src/common/mysql_cluster/Makefile
                  src/dataserver/Makefile

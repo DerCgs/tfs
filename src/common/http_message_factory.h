@@ -16,7 +16,7 @@
 #ifndef TFS_COMMON_HTTP_PACKET_FACTORY_H_
 #define TFS_COMMON_HTTP_PACKET_FACTORY_H_
 
-#include <tbnet.h>
+#include "tbnet/tbnet.h"
 
 namespace tfs
 {

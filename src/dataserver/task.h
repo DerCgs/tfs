@@ -17,8 +17,8 @@
 #ifndef TFS_DATASERVER_TASK_H_
 #define TFS_DATASERVER_TASK_H_
 
-#include <Mutex.h>
-#include <Monitor.h>
+#include "tbsys/Mutex.h"
+#include "tbsys/Monitor.h"
 #include "common/internal.h"
 #include "common/error_msg.h"
 #include "ds_define.h"

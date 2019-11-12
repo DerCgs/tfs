@@ -17,7 +17,7 @@
  *      - modify 2010-04-23
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "mmap_file_op.h"
 #include "error_msg.h"
 #include "func.h"

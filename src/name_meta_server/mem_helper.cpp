@@ -16,7 +16,7 @@
 #include "mem_helper.h"
 
 #include <stdlib.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "meta_cache_helper.h"
 #include "common/meta_server_define.h"
 

@@ -1,6 +1,4 @@
-AM_CPPFLAGS=-I$(top_srcdir)/src\
-	    -I$(TBLIB_ROOT)/include/tbsys\
-	    -I$(TBLIB_ROOT)/include/tbnet
+AM_CPPFLAGS=-I$(top_srcdir)/src
 
 AM_LDFLAGS=-lrt -lpthread -ldl -luuid -lz
 
@@ -12,9 +10,9 @@ LDADD = $(top_builddir)/src/tools/util/libtfstoolsutil.a\
 	$(top_builddir)/src/message/libtfsmessage.a\
 	$(top_builddir)/src/common/libtfscommon.a\
 	$(UNIQUE_STORE_LDFLAGS)\
-  $(TAIR_CACHE_LDFLAGS) \
-	$(TBLIB_ROOT)/lib/libtbnet.a\
-	$(TBLIB_ROOT)/lib/libtbsys.a\
+        $(TAIR_CACHE_LDFLAGS) \
+	$(top_builddir)/src/tbnet/libtbnet.a\
+	$(top_builddir)/src/tbsys/libtbsys.a\
 	-lz
 
 get_all_files_in_block_SOURCES = get_all_files_in_block.cpp

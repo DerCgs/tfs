@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <sys/types.h>
 #include <sys/time.h>
 #include "thread.h"

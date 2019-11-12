@@ -15,8 +15,8 @@
 #ifndef TFS_SYNCSERVER_SYNC_MANAGER_H_
 #define TFS_SYNCSERVER_SYNC_MANAGER_H_
 
-#include <TbThread.h>
-#include <Mutex.h>
+#include "tbsys/TbThread.h"
+#include "tbsys/Mutex.h"
 #include "common/internal.h"
 #include "ss_define.h"
 

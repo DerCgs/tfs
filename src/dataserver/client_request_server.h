@@ -15,8 +15,8 @@
 #ifndef TFS_DATASERVER_CLIENT_REQUEST_SERVER_H_
 #define TFS_DATASERVER_CLIENT_REQUEST_SERVER_H_
 
-#include <Timer.h>
-#include <Mutex.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Mutex.h"
 #include <string>
 #include "common/internal.h"
 #include "common/base_packet.h"

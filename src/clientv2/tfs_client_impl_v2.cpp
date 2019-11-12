@@ -13,7 +13,7 @@
  */
 #include <stdarg.h>
 #include <string>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/base_packet_factory.h"
 #include "common/base_packet_streamer.h"
 #include "common/client_manager.h"

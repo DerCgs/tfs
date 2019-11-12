@@ -18,7 +18,7 @@
 
 #include <stdio.h>
 #include <map>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <common/define.h>
 
 namespace tfs

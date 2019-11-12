@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include <gtest/gtest.h>
 #include <tbnet.h>
 #include "ns_define.h"

@@ -14,10 +14,10 @@
  *
  */
 #include <gtest/gtest.h>
-#include <tbsys.h>
-#include <Memory.hpp>
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
 #include <Timer.h>
-#include <Handle.h>
+#include "tbsys/Handle.h"
 #include <time.h>
 #include "common/base_service.h"
 #include "common/lock.h"

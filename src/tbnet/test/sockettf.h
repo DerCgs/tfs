@@ -20,7 +20,7 @@
 #ifndef SOCKETTF_H_
 #define SOCKETTF_H_
 #include <cppunit/extensions/HelperMacros.h>
-#include <tbnet.h>
+#include "tbnet/tbnet.h"
 #include <socket.h>
 
 namespace anet {

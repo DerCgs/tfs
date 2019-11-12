@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/define.h"
 #include "common/internal.h"
 #include "common/config.h"

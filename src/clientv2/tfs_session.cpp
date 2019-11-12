@@ -13,9 +13,9 @@
  *      - modify 2013-07-12
  *
  */
-#include <tbsys.h>
-#include <Memory.hpp>
-#include "Timer.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/Memory.hpp"
+#include "tbsys/Timer.h"
 #include "common/client_manager.h"
 #include "common/new_client.h"
 #include "common/error_msg.h"

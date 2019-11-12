@@ -14,7 +14,7 @@
 #ifndef TFS_DATASERVER_CHECKMANAGER_H_
 #define TFS_DATASERVER_CHECKMANAGER_H_
 
-#include <Mutex.h>
+#include "tbsys/Mutex.h"
 #include "common/internal.h"
 #include "message/message_factory.h"
 #include "common/error_msg.h"

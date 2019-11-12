@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "sync_file_entry_message.h"
 
 namespace tfs

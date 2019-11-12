@@ -18,7 +18,7 @@
 #define TEST_COMMON_UTILS_H
 
 #include "internal.h"
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 
 using namespace tfs::common;
 using namespace tbsys;

@@ -14,9 +14,9 @@
  *
  */
 #include <string>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <tbtimeutil.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include <gtest/gtest.h>
 #include "ds_define.h"
 #include "common/error_msg.h"

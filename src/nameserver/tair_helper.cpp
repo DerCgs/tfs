@@ -13,11 +13,13 @@
  *      - initial release
  *
  */
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/error_msg.h"
 #include "tair_helper.h"
 using namespace tfs::common;
+#ifdef WITH_TAIR_META
 using namespace tair;
+#endif
 namespace tfs
 {
   namespace nameserver
@@ -98,6 +100,7 @@ namespace tfs
 
     int TairHelper::del_family(const int64_t family_id, const bool del, const bool log, const uint64_t own_ipport)
     {
+#ifdef WITH_TAIR_META
       char pkey[128] = {'\0'};
       char skey[128] = {'\0'};
       char suffix[64] = {'\0'};
@@ -119,6 +122,9 @@ namespace tfs
           ret = insert_del_family_log_(family_id, own_ipport);
       }
       return ret;
+#else
+      return TFS_SUCCESS;
+#endif
     }
 
     int TairHelper::insert_del_family_log_(const int64_t family_id, const uint64_t own_ipport)
@@ -143,18 +149,25 @@ namespace tfs
 
     int TairHelper::initialize()
     {
+#ifdef WITH_TAIR_META
       tbutil::Mutex::Lock lock(mutex_);
       return tair_client_.startup(master_ipaddr_.c_str(), slave_ipaddr_.c_str(), group_name_.c_str()) ? TFS_SUCCESS : EXIT_INITIALIZE_TAIR_ERROR;
+#else
+      return TFS_SUCCESS;
+#endif
     }
 
     int TairHelper::destroy()
     {
+#ifdef WITH_TAIR_META
       tair_client_.close();
+#endif
       return TFS_SUCCESS;
     }
 
     int TairHelper::scan(std::vector<FamilyInfo>& family_infos, const int64_t start_family_id, const int32_t chunk, const bool del, const uint64_t peer_ipport)
     {
+#ifdef WITH_TAIR_META
       const int32_t ROW_LIMIT = 0;
       char pkey[128] = {'\0'};
       char start_key[128] = {'\0'};
@@ -195,10 +208,14 @@ namespace tfs
       TBSYS_LOG(INFO, "scan family information %d, start_family_id: %"PRI64_PREFIX"d, chunk: %d, pkey: %s, start_key: %s, end_key: %s , infos.size(): %zd",
         ret, start_family_id, chunk, pkey, start_key, end_key, family_infos.size());
       return ret;
+#else
+      return TFS_SUCCESS;
+#endif
     };
 
     int TairHelper::put_(const char* pkey, const char* skey, const char* value, const int32_t value_len)
     {
+#ifdef WITH_TAIR_META
       int32_t ret = (NULL != pkey && NULL != skey && NULL != value && value_len > 0) ? TFS_SUCCESS : EXIT_PARAMETER_ERROR;
       if (TFS_SUCCESS == ret)
       {
@@ -213,10 +230,14 @@ namespace tfs
         while (TAIR_RETURN_SUCCESS != ret && index++ < 3);
       }
       return ret;
+#else
+      return TFS_SUCCESS;
+#endif
     }
 
     int TairHelper::del_(const char* pkey, const char* skey)
     {
+#ifdef WITH_TAIR_META
       int32_t ret = (NULL != pkey && NULL != skey) ? TFS_SUCCESS : EXIT_PARAMETER_ERROR;
       if (TFS_SUCCESS == ret)
       {
@@ -232,10 +253,14 @@ namespace tfs
         while (TAIR_RETURN_SUCCESS != ret && index++ < 3);
       }
       return ret;
+#else
+      return TFS_SUCCESS;
+#endif
     }
 
     int TairHelper::incr_(const char* key, const int32_t step, int64_t& value)
     {
+#ifdef WITH_TAIR_META
       int32_t ret = (NULL != key && step >= 0) ? TFS_SUCCESS : EXIT_PARAMETER_ERROR;
       if (TFS_SUCCESS == ret)
       {
@@ -249,10 +274,14 @@ namespace tfs
         while (TAIR_RETURN_SUCCESS != ret && index++ < 3);
       }
       return ret;
+#else
+      return TFS_SUCCESS;
+#endif
     }
 
     int TairHelper::get_(const char* pkey, const char* skey, char* value, const int32_t value_len)
     {
+#ifdef WITH_TAIR_META
       int32_t ret = (NULL != pkey && NULL != skey && NULL != value && value_len > 0) ? TFS_SUCCESS : EXIT_PARAMETER_ERROR;
       if (TFS_SUCCESS == ret)
       {
@@ -274,6 +303,9 @@ namespace tfs
         }
       }
       return ret;
+#else
+      return TFS_SUCCESS;
+#endif
     }
   }/** end namespace nameserver **/
 }/** end namespace tfs **/

@@ -14,7 +14,7 @@
  *
  */
 #include <set>
-#include <Time.h>
+#include "tbsys/Time.h"
 #include <gtest/gtest.h>
 #include "common/mysql_cluster/mysql_database_helper.h"
 #include "common/mysql_cluster/database_pool.h"

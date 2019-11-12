@@ -17,8 +17,8 @@
 #ifndef TFS_COMMON_HTTP_PACKET_STREAMER_H_
 #define TFS_COMMON_HTTP_PACKET_STREAMER_H_
 
-#include <tbsys.h>
-#include <tbnet.h>
+#include "tbsys/tbsys.h"
+#include "tbnet/tbnet.h"
 
 namespace tfs
 {

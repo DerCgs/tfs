@@ -14,12 +14,12 @@
 #ifndef TFS_LIFE_CYCLE_MANAGER_EXPIRE_SERVER_HEART_MANAGER_H_
 #define TFS_LIFE_CYCLE_MANAGER_EXPIRE_SERVER_HEART_MANAGER_H_
 
-#include <tbsys.h>
-#include <Monitor.h>
-#include <Mutex.h>
-#include <Timer.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Monitor.h"
+#include "tbsys/Mutex.h"
+#include "tbsys/Timer.h"
 #include <Shared.h>
-#include <Handle.h>
+#include "tbsys/Handle.h"
 #include "common/kv_rts_define.h"
 #include "common/error_msg.h"
 #include "clean_task_helper.h"

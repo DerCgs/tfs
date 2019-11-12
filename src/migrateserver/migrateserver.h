@@ -15,8 +15,8 @@
 #ifndef TFS_MIGRATESERVER_MIGRATESERVER_H_
 #define TFS_MIGRATESERVER_MIGRATESERVER_H_
 
-#include <Timer.h>
-#include <Mutex.h>
+#include "tbsys/Timer.h"
+#include "tbsys/Mutex.h"
 #include "common/internal.h"
 #include "common/base_packet.h"
 #include "common/base_service.h"

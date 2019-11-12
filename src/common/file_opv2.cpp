@@ -17,7 +17,7 @@
 #include <string.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 
 #include "error_msg.h"
 #include "file_opv2.h"

@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <gtest/gtest.h>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "internal.h"
 #include "ds_lease_message.h"
 #include "array_helper.h"

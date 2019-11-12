@@ -38,7 +38,7 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <sstream>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/func.h"
 #include "common/atomic.h"
 #include "common/error_msg.h"

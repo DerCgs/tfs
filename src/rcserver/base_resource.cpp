@@ -16,7 +16,7 @@
 #include "base_resource.h"
 
 #include <algorithm>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "common/func.h"
 #include "mysql_database_helper.h"
 namespace

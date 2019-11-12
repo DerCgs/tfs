@@ -15,8 +15,8 @@
 */
 #ifndef TFS_RCSERVER_MYSQL_DATABASE_HELPER_H_
 #define TFS_RCSERVER_MYSQL_DATABASE_HELPER_H_
-#include <tbsys.h>
-#include <Mutex.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
 #include "database_helper.h"
 namespace tfs
 {

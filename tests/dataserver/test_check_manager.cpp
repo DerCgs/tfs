@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <gtest/gtest.h>
 
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "internal.h"
 #include "check_manager.h"
 #include "dataservice.h"

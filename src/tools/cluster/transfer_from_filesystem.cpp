@@ -1,6 +1,6 @@
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include <list>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/internal.h"
 #include "common/error_msg.h"
 #include "common/func.h"

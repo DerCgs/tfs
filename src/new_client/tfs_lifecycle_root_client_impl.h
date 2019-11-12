@@ -17,7 +17,7 @@
 #define TFS_CLIENT_LIFECYCLE_CLIENT_IMPL_H_
 
 #include <stdio.h>
-#include <tbsys.h>
+#include "tbsys/tbsys.h"
 #include "tfs_client_impl.h"
 #include "common/expire_define.h"
 #include "tfs_lifecycle_root_client_api.h"

@@ -22,8 +22,8 @@
 #include "common/tfs_vector.h"
 #include "common/internal.h"
 #include "message/message_factory.h"
-#include "tbsys.h"
-#include "TbThread.h"
+#include "tbsys/tbsys.h"
+#include "tbsys/TbThread.h"
 #include "base_server_helper.h"
 
 namespace tfs

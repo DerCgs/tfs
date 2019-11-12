@@ -13,7 +13,7 @@
  *      - initial release
  *
  */
-#include "tbsys.h"
+#include "tbsys/tbsys.h"
 #include "clientv2/fsname.h"
 
 using namespace tfs::clientv2;

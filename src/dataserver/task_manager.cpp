@@ -14,7 +14,7 @@
  *
  */
 
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 #include "common/base_packet.h"
 #include "message/message_factory.h"
 #include "message/dataserver_task_message.h"

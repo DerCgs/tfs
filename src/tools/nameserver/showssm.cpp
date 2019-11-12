@@ -19,7 +19,7 @@
 #include <string>
 #include <ext/hash_map>
 #include <signal.h>
-#include <Memory.hpp>
+#include "tbsys/Memory.hpp"
 
 #include "common/config.h"
 #include "message/client.h"

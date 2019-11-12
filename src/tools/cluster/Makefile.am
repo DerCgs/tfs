@@ -1,23 +1,21 @@
 AM_CPPFLAGS=-I$(top_srcdir)/src\
-	    -I$(TBLIB_ROOT)/include/tbsys\
-	    -I$(TBLIB_ROOT)/include/tbnet\
-      $(READLINE_INCLUDE)\
-		  -I$(TREST_ROOT)/include
+            $(READLINE_INCLUDE)\
+            -I$(TREST_ROOT)/include
 
-AM_LDFLAGS=-lrt -lpthread -ldl $(READLINE_LIB) -ljson -lcurl
+AM_LDFLAGS=-lrt -lpthread -ldl $(READLINE_LIB) -lfastjson -lcurl
 
 #bin_PROGRAMS = transfer split_item_tool transfer_from_filesystem
 bin_PROGRAMS = transfer split_item_tool
 LDADD = $(top_builddir)/src/tools/util/libtfstoolsutil.a\
-  $(top_builddir)/src/requester/libtfssyncutil.a\
-  $(top_builddir)/src/clientv2/.libs/libtfsclientv2.a\
-  $(top_builddir)/src/requester/libtfsrequester.a\
-	$(top_builddir)/src/message/libtfsmessage.a\
-	$(top_builddir)/src/common/libtfscommon.a\
-	$(TAIR_CACHE_LDFLAGS)\
-	$(top_builddir)/src/tbnet/libtbnet.a\
-	$(top_builddir)/src/tbsys/libtbsys.a
-#	$(TREST_ROOT)/lib/libtfs_cpp_restful_client.a
+        $(top_builddir)/src/requester/libtfssyncutil.a\
+        $(top_builddir)/src/clientv2/.libs/libtfsclientv2.a\
+        $(top_builddir)/src/requester/libtfsrequester.a\
+        $(top_builddir)/src/message/libtfsmessage.a\
+        $(top_builddir)/src/common/libtfscommon.a\
+        $(TAIR_CACHE_LDFLAGS)\
+        $(top_builddir)/src/tbnet/libtbnet.a\
+        $(top_builddir)/src/tbsys/libtbsys.a
+#    $(TREST_ROOT)/lib/libtfs_cpp_restful_client.a
 
 transfer_SOURCES=transfer.cpp transfer.h
 

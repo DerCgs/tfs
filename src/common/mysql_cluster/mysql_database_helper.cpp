@@ -15,10 +15,9 @@
  */
 #include "mysql_database_helper.h"
 
-#include <errmsg.h>
 #include <vector>
-#include <errmsg.h>
-#include <mysqld_error.h>
+#include <mysql/errmsg.h>
+#include <mysql/mysqld_error.h>
 
 #include "common/define.h"
 #include "common/func.h"

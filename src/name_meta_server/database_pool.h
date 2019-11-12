@@ -15,8 +15,8 @@
 */
 #ifndef TFS_NAMEMETASERVER_DATABASE_POOL_H_
 #define TFS_NAMEMETASERVER_DATABASE_POOL_H_
-#include <tbsys.h>
-#include <Mutex.h>
+#include "tbsys/tbsys.h"
+#include "tbsys/Mutex.h"
 #include "common/internal.h"
 #include "common/meta_hash_helper.h"
 namespace tfs
